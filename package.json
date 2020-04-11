@@ -1,0 +1,24 @@
+{
+  "name": "The-college-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AzTechs-Team/The-college-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AzTechs-Team/The-college-app/issues"
+  },
+  "homepage": "https://github.com/AzTechs-Team/The-college-app#readme",
+  "dependencies": {
+    "mongoose": "^5.9.7",
+    "validator": "^13.0.0"
+  }
+}
