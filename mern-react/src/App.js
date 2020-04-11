@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import About from './Components/About';
+import Card from './Components/Card';
+import Navbar from './Components/Navbar';
+import Carousel from './Components/Carousel';
+import Footer from './Components/Footer';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      <Carousel/>
+      <About/>
+      <div  style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly'}} >
+        <Card/>
+        <Card/>
+        <Card/>
+      </div>
+      <Footer/>
     </div>
   );
 }

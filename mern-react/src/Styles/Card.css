@@ -1,0 +1,9 @@
+div.card{
+    border:1px solid black;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-right:5px;
+    padding:25px auto;
+    width:400px;
+    height:300px;
+}
