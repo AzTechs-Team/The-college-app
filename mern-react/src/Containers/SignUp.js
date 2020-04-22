@@ -19,19 +19,53 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Signup() {
-  const classes = useStyles();
+class Signup extends React.Component  {
+  state = {
+    name: '',
+    username:'',
+    email:'',
+    password:'',
 
+	}
+ 
+	handleNameChange = (e) => this.setState({
+		name: e.target.value
+  });
+	handlePwdChange = (e) => this.setState({
+	  password: e.target.value
+  });
+	handleEmailChange = (e) => this.setState({
+	  email: e.target.value
+  });
+	handleUserChange = (e) => this.setState({
+	  username: e.target.value
+  });
   
+  handleData = () =>{
+    var data = { name: this.state.name, username:this.state.username,
+      email:this.state.email, password: this.state.password };
+    data = JSON.stringify(data);
+    console.log(data);
+    this.setState({
+      name: '',
+      username: '',
+      email: '',
+      password:''
+    })
+  }
+
+  render() {
   return (
     <div>
     
-    <form className={classes.root} noValidate autoComplete="off" >
+    <form className={useStyles.root} noValidate autoComplete="off" >
         <TextField
-          id="outlined-username-input"
+          id="outlined-name-input"
           label="Name"
           type="text"
           variant="outlined"
+          value={this.state.name}
+				  onChange={this.handleNameChange}
           />
         <br/>
         <TextField
@@ -39,13 +73,17 @@ function Signup() {
           label="Username"
           type="text"
           variant="outlined"
+          value={this.state.username}
+				  onChange={this.handleUserChange}
           />
         <br/>
         <TextField
-          id="outlined-username-input"
+          id="outlined-email-input"
           label="Email"
           type="email"
           variant="outlined"
+          value={this.state.email}
+				  onChange={this.handleEmailChange}
           />
         <br/>
         <TextField
@@ -53,10 +91,12 @@ function Signup() {
           label="Password"
           type="password"
           variant="outlined"
+          value={this.state.password}
+				  onChange={this.handlePwdChange}
           
         />
         <br/><br/>
-         <Button variant="contained" type="submit"  >Signup</Button>
+         <Button variant="contained" onClick={this.handleData}  >Signup</Button>
         
 
          <Typography>Already have an account??</Typography>
@@ -67,7 +107,7 @@ function Signup() {
   );
   
 }
-
+}
 export default Signup;
 
 

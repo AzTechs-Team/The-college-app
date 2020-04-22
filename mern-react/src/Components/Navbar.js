@@ -24,24 +24,30 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import HelpIcon from '@material-ui/icons/Help';
+import "../Styles/Navbar.css"
 
-const drawerWidth = 210;
+
+const drawerWidth = 190;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0
-    }
+    },
+    boxShadow: '1px 1px 5px #222',
+    zIndex:3,
+    border:0
   },
   appBar: {
     marginLeft: drawerWidth,
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`
-    }
+    },
+    
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -49,14 +55,28 @@ const useStyles = makeStyles(theme => ({
       display: "none"
     }
   },
-  toolbar: theme.mixins.toolbar,
+  toolbar:theme.mixins.toolbar,
+  toolbar:{
+    marginBottom:0,
+   
+  },
   drawerPaper: {
     width: drawerWidth
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
     backgroundColor:'white',
+    paddingTop:'49px',
+  },
+  toolbarButtons: {
+    marginLeft: 'auto',
+    marginRight: 20,
+  },
+  typography: {
+    flexGrow: 1,
+    align: "center",
+    textDecoration:'none',
+    color:'white'
   }
 }));
 
@@ -73,7 +93,14 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      <div className={classes.toolbar,"top-nav"} >
+      <img src={require('../Logo.png')} style={{height:'57px',
+      position: 'relative', 
+      left: '32%',
+      bottom:'15%',
+      }} alt="logo" />
+     </div>
+     
       <Divider />
       <List>
         
@@ -119,11 +146,18 @@ function ResponsiveDrawer(props) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
+      
       
       <BrowserRouter>
+      {/* <div className={classes.toolbar} >
+        <Typography variant="h6">Explore</Typography>
+     </div> */}
+     {/* <div className={classes.toolbar,"top-nav"} >
+        <img src={require('../Logo.png')} style={{height:'57px'}} />
+     </div> */}
+     <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
+          <Toolbar className="top-nav">
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -133,12 +167,13 @@ function ResponsiveDrawer(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component={Link} to="/">
+            <Typography variant="h5" align="center" noWrap component={Link} to="/" className={classes.typography} >
               Cluster
             </Typography>
+            <div className={classes.toolbarButtons}>
             <Button color="inherit" component={Link} to="/login">Login</Button>
             <Button color="inherit" component={Link} to="/signup">Signup</Button>
-          
+            </div>
           </Toolbar>
       </AppBar>
         <nav className={classes.drawer} aria-label="mailbox folders">
@@ -201,3 +236,4 @@ ResponsiveDrawer.propTypes = {
 };
 
 export default ResponsiveDrawer;
+

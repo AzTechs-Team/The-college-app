@@ -1,3 +1,13 @@
-.navbar{
+.top-nav{
     background-color: black;
+}
+
+.title{
+    color:white;
+    text-decoration: none;
+    text-align: center;
+}
+
+.nav-btn{
+    margin-left: 'auto';
 }
