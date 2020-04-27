@@ -1,9 +1,9 @@
 import React from 'react';
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
-
 import '../Styles/Carousel.css';
 
+//decalring a constant array with information about carousel
 const content = [
 	{
 		title: 'Vulputate Mollis Ultricies Fermentum Parturient',
@@ -34,7 +34,7 @@ const content = [
 	}
 ];
 
-
+//declaring and exporting function "Carousle"
 function Carousel(){
     return(
         

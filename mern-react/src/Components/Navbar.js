@@ -18,17 +18,21 @@ import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import Home from '../Containers/Home'
 import Login from '../Containers/Login'
 import SignUp from '../Containers/SignUp'
+import Events from '../Containers/Events'
+import Clubs from '../Containers/Clubs'
 import Button from '@material-ui/core/Button';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import HelpIcon from '@material-ui/icons/Help';
+import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import "../Styles/Navbar.css"
 
-
+//Drawer width
 const drawerWidth = 190;
 
+//Style component
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
@@ -38,14 +42,16 @@ const useStyles = makeStyles(theme => ({
       width: drawerWidth,
       flexShrink: 0
     },
-    boxShadow: '1px 1px 5px #222',
-    zIndex:3,
-    border:0
+    //boxShadow: '1px 1px 5px #222',
+    zIndex:10,
+    //border:'1px solid black' ,
+    height:'90vh'
   },
   appBar: {
     marginLeft: drawerWidth,
     [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`
+      width:'100%'
+      // width: `calc(100% - ${drawerWidth}px)`
     },
     
   },
@@ -55,10 +61,12 @@ const useStyles = makeStyles(theme => ({
       display: "none"
     }
   },
-  toolbar:theme.mixins.toolbar,
+
   toolbar:{
-    marginBottom:0,
-   
+    [theme.mixins.toolbar]:{
+      marginBottom:0,
+    }
+  
   },
   drawerPaper: {
     width: drawerWidth
@@ -72,14 +80,16 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 'auto',
     marginRight: 20,
   },
-  typography: {
-    flexGrow: 1,
-    align: "center",
-    textDecoration:'none',
-    color:'white'
+  logoHide:{
+    display:'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+      paddingRight:'10px'
+    },
   }
 }));
 
+//Making drawer responsive
 function ResponsiveDrawer(props) {
   const { container } = props;
   const classes = useStyles();
@@ -91,20 +101,19 @@ function ResponsiveDrawer(props) {
   };
 
 
+  //Defining data of drawer component
   const drawer = (
     <div>
-      <div className={classes.toolbar,"top-nav"} >
-      <img src={require('../Logo.png')} style={{height:'57px',
+      <div className={`${classes.toolbar} top-nav`} >
+      <img src={require('../Images/Logo.png')} style={{height:'57px',
       position: 'relative', 
       left: '32%',
       bottom:'15%',
       }} alt="logo" />
      </div>
-     
-      <Divider />
+     <Divider />
       <List>
-        
-          <ListItem key="Events" component={Link} to="/events">
+        <ListItem key="Events" component={Link} to="/events">
             <ListItemIcon>
             <EventAvailableIcon/>
             </ListItemIcon>
@@ -128,10 +137,16 @@ function ResponsiveDrawer(props) {
             </ListItemIcon>
             <ListItemText primary="Blog" />
           </ListItem>
+          <ListItem key="Contact" component={Link} to="/contact">
+            <ListItemIcon>
+            <AlternateEmailIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Contact" />
+          </ListItem>
           <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>
           <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>
           <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>
-          <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>
+          <ListItem/>  <ListItem/>  <ListItem/>  
           <Divider/>
           <ListItem key="Help" component={Link} to="/help">
             <ListItemIcon>
@@ -146,16 +161,10 @@ function ResponsiveDrawer(props) {
 
   return (
     <div className={classes.root}>
-      
-      
-      <BrowserRouter>
-      {/* <div className={classes.toolbar} >
-        <Typography variant="h6">Explore</Typography>
-     </div> */}
-     {/* <div className={classes.toolbar,"top-nav"} >
-        <img src={require('../Logo.png')} style={{height:'57px'}} />
-     </div> */}
-     <CssBaseline />
+      <CssBaseline />
+      {/*Adding BrowserRouter from React-router to navigate between link paths */}
+      <BrowserRouter>     
+      {/* Displaying top-nav bar */}
       <AppBar position="fixed" className={classes.appBar}>
           <Toolbar className="top-nav">
             <IconButton
@@ -166,9 +175,12 @@ function ResponsiveDrawer(props) {
               className={classes.menuButton}
             >
               <MenuIcon />
+              
             </IconButton>
-            <Typography variant="h5" align="center" noWrap component={Link} to="/" className={classes.typography} >
-              Cluster
+            <img src={require('../Images/Logo.png')} style={{height:'45px'}} alt="logo" className={classes.logoHide}/>
+            <Typography variant="h5" align="center" noWrap component={Link} to="/" className="title"
+            style={{fontWeight:'bold'}} >
+              CLUSTER
             </Typography>
             <div className={classes.toolbarButtons}>
             <Button color="inherit" component={Link} to="/login">Login</Button>
@@ -178,6 +190,7 @@ function ResponsiveDrawer(props) {
       </AppBar>
         <nav className={classes.drawer} aria-label="mailbox folders">
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+          {/* Helps in responsive design on mobile devices */}
           <Hidden smUp implementation="css">
             <Drawer
               container={container}
@@ -195,6 +208,7 @@ function ResponsiveDrawer(props) {
               {drawer}
             </Drawer>
           </Hidden>
+          {/* Helps in display on larger screens like laptop and tablets */}
           <Hidden xsDown implementation="css">
             <Drawer
               classes={{
@@ -207,16 +221,16 @@ function ResponsiveDrawer(props) {
             </Drawer>
           </Hidden>
         </nav>
-
+        {/* Main content that is display */}
         <main className={classes.content}>
           <div className={classes.toolbar} />
-
+          {/* Specifying switch from React-router to render the linked component */}
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/Login" component={Login} />
-            <Route path="/Signup" component={SignUp} />
-            <Route path="/Starred" render={() => <div>Page starred</div>} />
-            {/* <Route path="/login" component={Login} /> */}
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/events" component={Events}/>
+            <Route path="/clubs" component={Clubs}/>
             
           </Switch>
         </main>
