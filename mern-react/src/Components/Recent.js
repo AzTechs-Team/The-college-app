@@ -2,39 +2,45 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
-
+import {Link} from 'react-router-dom'
 
 //declaring a constant array with images and information about recent cards.
 const images = [
   {
-    url: '/static/images/grid-list/breakfast.jpg',
-    title: 'Breakfast',
+    url: 'carousel-two.jpg',
+    title: 'Event1 registrations open',
     width: '30%',
+    link:"/events"
   },
   {
-    url: '/static/images/grid-list/burgers.jpg',
-    title: 'Burgers',
+    url: 'carousel-one.jpg',
+    title: 'WT notes added',
     width: '30%',
+    link:"/resources"
   },
   {
-    url: '/static/images/grid-list/camera.jpg',
-    title: 'Camera',
+    url: 'carousel-three.jpg',
+    title: 'New club on campus!',
     width: '30%',
+    link:"/clubs"
   },
   {
-    url: '/static/images/grid-list/breakfast.jpg',
-    title: 'Breakfast',
+    url: 'carousel-one.jpg',
+    title: 'Winners of Event2',
     width: '30%',
+    link:"/events"
   },
   {
-    url: '/static/images/grid-list/burgers.jpg',
-    title: 'Burgers',
+    url: 'carousel-two.jpg',
+    title: 'Club recruitments started!',
     width: '30%',
+    link:"/clubs"
   },
   {
-    url: '/static/images/grid-list/camera.jpg',
-    title: 'Camera',
+    url: 'carousel-three.jpg',
+    title: 'Python resources added!',
     width: '30%',
+    link:"resources"
   },
 ];
 
@@ -130,11 +136,13 @@ export default function Recent() {
           style={{
             width: image.width,
           }}
+          component={Link}
+          to={image.link}
         >
           <span
             className={classes.imageSrc}
             style={{
-              backgroundImage: `url(${image.url})`,
+              backgroundImage: `url(${require(`../Images/${image.url}`)})`,
             }}
           />
           <span className={classes.imageBackdrop} />

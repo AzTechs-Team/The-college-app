@@ -21,23 +21,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //declaring and exporting function "about"
-export default function About() {
+export default function About(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Paper elevation={3} >
       <Typography varient="p">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at sodales
-       odio, vitae consequat magna. Donec hendrerit purus non leo laoreet, imperdiet 
-       porta ligula placerat. Vivamus molestie nisl diam, vel vestibulum arcu pharetra 
-       sollicitudin. Suspendisse scelerisque ante et imperdiet tempor. Quisque vitae
-        risus non diam auctor lobortis id eu mauris. Pellentesque commodo urna quis
-         neque luctus ultricies. Mauris pretium posuere orci, id tincidunt ante 
-         tincidunt in.
+      {props.desc}
       </Typography><br/>
       <Button size="small" variant="contained" style={{backgroundColor:'#17233b',color:'white'}}>
-          Signup now!
+          {props.btn}
         </Button>
       </Paper>
     </div>

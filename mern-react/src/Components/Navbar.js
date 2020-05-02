@@ -14,17 +14,18 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
+import { Switch, Route, Link, BrowserRouter} from "react-router-dom";
 import Home from '../Containers/Home'
 import Login from '../Containers/Login'
 import SignUp from '../Containers/SignUp'
 import Events from '../Containers/Events'
 import Clubs from '../Containers/Clubs'
+import Contact from '../Containers/Contact'
+import Resources from '../Containers/Resources'
 import Button from '@material-ui/core/Button';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import HelpIcon from '@material-ui/icons/Help';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import "../Styles/Navbar.css"
@@ -42,9 +43,7 @@ const useStyles = makeStyles(theme => ({
       width: drawerWidth,
       flexShrink: 0
     },
-    //boxShadow: '1px 1px 5px #222',
     zIndex:10,
-    //border:'1px solid black' ,
     height:'90vh'
   },
   appBar: {
@@ -131,23 +130,13 @@ function ResponsiveDrawer(props) {
             </ListItemIcon>
             <ListItemText primary="Resources" />
           </ListItem>
-          <ListItem key="Blog" component={Link} to="/blog">
-            <ListItemIcon>
-            <LibraryBooksIcon/>
-            </ListItemIcon>
-            <ListItemText primary="Blog" />
-          </ListItem>
           <ListItem key="Contact" component={Link} to="/contact">
             <ListItemIcon>
             <AlternateEmailIcon/>
             </ListItemIcon>
             <ListItemText primary="Contact" />
           </ListItem>
-          <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>
-          <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>
-          <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>  <ListItem/>
-          <ListItem/>  <ListItem/>  <ListItem/>  
-          <Divider/>
+          <Divider style={{marginTop:"30px"}}/>
           <ListItem key="Help" component={Link} to="/help">
             <ListItemIcon>
             <HelpIcon/>
@@ -177,7 +166,9 @@ function ResponsiveDrawer(props) {
               <MenuIcon />
               
             </IconButton>
+            <Link to="/">
             <img src={require('../Images/Logo.png')} style={{height:'45px'}} alt="logo" className={classes.logoHide}/>
+            </Link>
             <Typography variant="h5" align="center" noWrap component={Link} to="/" className="title"
             style={{fontWeight:'bold'}} >
               CLUSTER
@@ -231,13 +222,15 @@ function ResponsiveDrawer(props) {
             <Route path="/signup" component={SignUp} />
             <Route path="/events" component={Events}/>
             <Route path="/clubs" component={Clubs}/>
+            <Route path="/resources" component={Resources}/>            
+            <Route path="/contact" component={Contact}/>
             
           </Switch>
         </main>
       </BrowserRouter>
     </div>
-  );
-}
+  );}
+
 
 ResponsiveDrawer.propTypes = {
   /**

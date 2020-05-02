@@ -37,7 +37,15 @@ function Home() {
       </Grid><br/>
 
       {/* display About section */}
-      <About/>
+      <About 
+      desc=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at sodales
+      odio, vitae consequat magna. Donec hendrerit purus non leo laoreet, imperdiet 
+      porta ligula placerat. Vivamus molestie nisl diam, vel vestibulum arcu pharetra 
+      sollicitudin. Suspendisse scelerisque ante et imperdiet tempor. Quisque vitae
+       risus non diam auctor lobortis id eu mauris. Pellentesque commodo urna quis
+        neque luctus ultricies. Mauris pretium posuere orci, id tincidunt ante 
+        tincidunt in."
+        btn="Signup Now!"/>
       <br/><br/>  
       
       {/* display Recent section */}

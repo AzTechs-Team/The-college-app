@@ -1,71 +1,52 @@
+import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom'
 
+const ClubCard=(props)=>{
+   
+    return(
+    <Flippy
+    flipOnHover={true}
+    flipDirection="horizontal" 
+    style={{ width: '450px', height: '250px',marginBottom:'25px',marginRight:'25px' }} 
+    >
+        <FrontSide style={{
+        backgroundImage:` url(${require(`../Images/${props.img}`)})`,backgroundSize:'cover'}}>
+        <br/><br/><br/>
+        <div style={{backgroundColor:'rgba(0,0,0,0.3)'}}>
+            <hr style={{height:'4px',backgroundColor:'white',width:'60%'}}/>
+            <h1 style={{textAlign:'center',color:'white'}}>{props.name}</h1>
+            <hr style={{height:'4px',backgroundColor:'white',width:'60%'}}/>
+        </div>
+        </FrontSide>
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 400,
-    marginTop:'40px',
-    border:'1px solid black',
-    boxShadow:'none',
-    "&:hover": {
-      backgroundColor: "white"
-    }
-  },
-  media: {
-    paddingTop:0,
-    marginTop:0,
-    height: 'auto',
-  
-  },
-  img:{
-    height:'120px',
-    width:'400px',
-    alignSelf:'center',
-  },
-  content_card:{
-    textAlign:'center',
-  }
-});
-
-const LogoCard=(props)=> {
-  const classes = useStyles();
-
-  return (
-
-    <Card className={classes.root} >
-      <div style={{ display:'flex', justifyContent:'space-evenly' }}>
-        <CardMedia
-          className={classes.media,classes.img}
-          image={require(`../Images/${props.img}`)}
-          title={props.name}
-      />
-        <CardContent className={classes.content_card}>
-          <Typography variant="h5" component="h2" >
-            {props.name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p" style={{color:'#253859'}}>
+        <BackSide
+        style={{ display:'flex',alignItems:'center',flexDirection:'column'}}>
+            <Typography variant="h5">{props.name}</Typography><br/>
+             <Typography variant="body2" color="textSecondary" component="p" style={{color:'#253859'}}
+             align="center">
             {props.desc}
             
-          </Typography>
-        </CardContent></div>
-     <div style={{ display:'flex', justifyContent:'center' }}>
-      <CardActions>
-      
-        <Button size="small" variant="contained" style={{backgroundColor:'#ff6769',color:'white'}}>
-          Join
-        </Button>
-        
-      </CardActions></div>
-    </Card>
- 
-  );
-}
+            </Typography>
+            <br/>
 
-export default LogoCard;
+          <div style={{ display:'flex',justifyContent:'center',flexDirection:'row'}}>
+          <Button size="small" variant="contained" style={{backgroundColor:'#ff6769',color:'white'}}
+        component={Link} to={'/clubs'}>
+          Join Club!
+        </Button>&ensp;
+          <Button size="small" variant="contained" style={{backgroundColor:'#ff6769',color:'white'}}
+        component={Link} to={'/events'}>
+          Checkout events!
+        </Button>
+        </div>
+
+        </BackSide>
+    </Flippy>
+        )
+    }
+
+
+export default ClubCard;
