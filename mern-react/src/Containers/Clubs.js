@@ -3,67 +3,37 @@ import Grid from '@material-ui/core/Grid'
 import ClubCard from '../Components/ClubCards'
 import Footer from '../Components/Footer'
 import Title from '../Components/Title'
+import { Typography } from '@material-ui/core';
 
 
-
-function Club() {
+function Clubs() {
   return (
     <div>        
-
+  
       <Title name="Clubs"/>
- 
-      <Grid container  style={{display:'flex',justifyContent:'center'}}>
+      <Grid container  style={{display:'flex',justifyContent:'space-evenly'}}>
         <Grid item  >
-          <ClubCard name="Developer Students Club"
+          <ClubCard 
+          club="Developer Student Club"
+          img="dsc.png"
           desc="Club description.Club description.
           Club description. Club description. Club desciption.
           Club description.Club description.
-          Club description. Club description. Club desciption.
-          Club description.Club description.
-          Club description. Club description. Club desciption.
-          Club description.Club description.
-          Club description. Club description. Club desciption."
-          img="carousel-three.jpg"/>
+          Club description. Club description. Club desciption."/>
         </Grid>
         <Grid item  >
-          <ClubCard name="Mozilla Campus Club"
+          <ClubCard 
+          club="Developer Student Club"
+          img="dsc.png"
           desc="Club description.Club description.
           Club description. Club description. Club desciption.
           Club description.Club description.
-          Club description. Club description. Club desciption.
-          Club description.Club description.
-          Club description. Club description. Club desciption.
-          Club description.Club description.
-          Club description. Club description. Club desciption."
-          img="carousel-two.jpg"/>
+          Club description. Club description. Club desciption."/>
         </Grid>
-        <Grid item  >
-          <ClubCard name="Microsoft student partners"
-          desc="Club description.Club description.
-          Club description. Club description. Club desciption.
-          Club description.Club description.
-          Club description. Club description. Club desciption.
-          Club description.Club description.
-          Club description. Club description. Club desciption.
-          Club description.Club description.
-          Club description. Club description. Club desciption."
-          img="carousel-one.jpg"/>
-        </Grid>
-        <Grid item  >
-          <ClubCard name="ACM"
-          desc="Club description.Club description.
-          Club description. Club description. Club desciption.
-          Club description.Club description.
-          Club description. Club description. Club desciption.
-          Club description.Club description.
-          Club description. Club description. Club desciption.
-          Club description.Club description.
-          Club description. Club description. Club desciption."
-          img="carousel-two.jpg"/>
-        </Grid>
-                
+       
+        
       </Grid>
- 
+      
       <Footer/>
     </div>
    
@@ -72,7 +42,7 @@ function Club() {
 
 
 
-export default Club;
+export default Clubs;
 
 
 

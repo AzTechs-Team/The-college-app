@@ -14,78 +14,76 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Switch, Route, Link, BrowserRouter} from "react-router-dom";
-import Home from '../Containers/Home'
-import Login from '../Containers/Login'
-import SignUp from '../Containers/SignUp'
-import Events from '../Containers/Events'
-import Clubs from '../Containers/Clubs'
-import Contact from '../Containers/Contact'
-import Resources from '../Containers/Resources'
-import Button from '@material-ui/core/Button';
-import EventAvailableIcon from '@material-ui/icons/EventAvailable';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import HelpIcon from '@material-ui/icons/Help';
-import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
-import "../Styles/Navbar.css"
+import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
+import Home from "../Containers/Home";
+import SignIn from "../Containers/Login";
+import SignUp from "../Containers/SignUp";
+import Events from "../Containers/Events";
+import Clubs from "../Containers/Clubs";
+import Contact from "../Containers/Contact";
+import Resources from "../Containers/Resources";
+import Button from "@material-ui/core/Button";
+import EventAvailableIcon from "@material-ui/icons/EventAvailable";
+import GroupAddIcon from "@material-ui/icons/GroupAdd";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
+import HelpIcon from "@material-ui/icons/Help";
+import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import "../Styles/Navbar.css";
 
 //Drawer width
 const drawerWidth = 190;
 
 //Style component
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
-      flexShrink: 0
+      flexShrink: 0,
     },
-    zIndex:10,
-    height:'90vh'
+    zIndex: 10,
+    height: "90vh",
   },
   appBar: {
     marginLeft: drawerWidth,
     [theme.breakpoints.up("sm")]: {
-      width:'100%'
+      width: "100%",
       // width: `calc(100% - ${drawerWidth}px)`
     },
-    
   },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
-      display: "none"
-    }
+      display: "none",
+    },
   },
 
-  toolbar:{
-    [theme.mixins.toolbar]:{
-      marginBottom:0,
-    }
-  
+  toolbar: {
+    [theme.mixins.toolbar]: {
+      marginBottom: 0,
+    },
   },
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
   },
   content: {
     flexGrow: 1,
-    backgroundColor:'white',
-    paddingTop:'49px',
+    backgroundColor: "white",
+    paddingTop: "49px",
   },
   toolbarButtons: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
     marginRight: 20,
   },
-  logoHide:{
-    display:'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-      paddingRight:'10px'
+  logoHide: {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+      paddingRight: "10px",
     },
-  }
+  },
 }));
 
 //Making drawer responsive
@@ -99,51 +97,54 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
-
   //Defining data of drawer component
   const drawer = (
     <div>
-      <div className={`${classes.toolbar} top-nav`} >
-      <img src={require('../Images/Logo.png')} style={{height:'57px',
-      position: 'relative', 
-      left: '32%',
-      bottom:'15%',
-      }} alt="logo" />
-     </div>
-     <Divider />
+      <div className={`${classes.toolbar} top-nav`}>
+        <img
+          src={require("../Images/Logo.png")}
+          style={{
+            height: "57px",
+            position: "relative",
+            left: "32%",
+            bottom: "15%",
+          }}
+          alt="logo"
+        />
+      </div>
+      <Divider />
       <List>
         <ListItem key="Events" component={Link} to="/events">
-            <ListItemIcon>
-            <EventAvailableIcon/>
-            </ListItemIcon>
-            <ListItemText primary="Events" />
-          </ListItem>
-          <ListItem key="Clubs" component={Link} to="/clubs">
-            <ListItemIcon>
-            <GroupAddIcon/>
-            </ListItemIcon>
-            <ListItemText primary="Clubs" />
-          </ListItem>
-          <ListItem key="Resources" component={Link} to="/resources">
-            <ListItemIcon>
-            <FileCopyIcon/>
-            </ListItemIcon>
-            <ListItemText primary="Resources" />
-          </ListItem>
-          <ListItem key="Contact" component={Link} to="/contact">
-            <ListItemIcon>
-            <AlternateEmailIcon/>
-            </ListItemIcon>
-            <ListItemText primary="Contact" />
-          </ListItem>
-          <Divider style={{marginTop:"30px"}}/>
-          <ListItem key="Help" component={Link} to="/help">
-            <ListItemIcon>
-            <HelpIcon/>
-            </ListItemIcon>
-            <ListItemText primary="Help" />
-          </ListItem>
-        
+          <ListItemIcon>
+            <EventAvailableIcon />
+          </ListItemIcon>
+          <ListItemText primary="Events" />
+        </ListItem>
+        <ListItem key="Clubs" component={Link} to="/clubs">
+          <ListItemIcon>
+            <GroupAddIcon />
+          </ListItemIcon>
+          <ListItemText primary="Clubs" />
+        </ListItem>
+        <ListItem key="Resources" component={Link} to="/resources">
+          <ListItemIcon>
+            <FileCopyIcon />
+          </ListItemIcon>
+          <ListItemText primary="Resources" />
+        </ListItem>
+        <ListItem key="Contact" component={Link} to="/contact">
+          <ListItemIcon>
+            <AlternateEmailIcon />
+          </ListItemIcon>
+          <ListItemText primary="Contact" />
+        </ListItem>
+        <Divider style={{ marginTop: "30px" }} />
+        <ListItem key="Help" component={Link} to="/help">
+          <ListItemIcon>
+            <HelpIcon />
+          </ListItemIcon>
+          <ListItemText primary="Help" />
+        </ListItem>
       </List>
     </div>
   );
@@ -152,9 +153,9 @@ function ResponsiveDrawer(props) {
     <div className={classes.root}>
       <CssBaseline />
       {/*Adding BrowserRouter from React-router to navigate between link paths */}
-      <BrowserRouter>     
-      {/* Displaying top-nav bar */}
-      <AppBar position="fixed" className={classes.appBar}>
+      <BrowserRouter>
+        {/* Displaying top-nav bar */}
+        <AppBar position="fixed" className={classes.appBar}>
           <Toolbar className="top-nav">
             <IconButton
               color="inherit"
@@ -164,21 +165,36 @@ function ResponsiveDrawer(props) {
               className={classes.menuButton}
             >
               <MenuIcon />
-              
             </IconButton>
             <Link to="/">
-            <img src={require('../Images/Logo.png')} style={{height:'45px'}} alt="logo" className={classes.logoHide}/>
+              <img
+                src={require("../Images/Logo.png")}
+                style={{ height: "45px" }}
+                alt="logo"
+                className={classes.logoHide}
+              />
             </Link>
-            <Typography variant="h5" align="center" noWrap component={Link} to="/" className="title"
-            style={{fontWeight:'bold'}} >
+            <Typography
+              variant="h5"
+              align="center"
+              noWrap
+              component={Link}
+              to="/"
+              className="title"
+              style={{ fontWeight: "bold" }}
+            >
               CLUSTER
             </Typography>
             <div className={classes.toolbarButtons}>
-            <Button color="inherit" component={Link} to="/login">Login</Button>
-            <Button color="inherit" component={Link} to="/signup">Signup</Button>
+              <Button color="inherit" component={Link} to="/login">
+                Login
+              </Button>
+              <Button color="inherit" component={Link} to="/signup">
+                Signup
+              </Button>
             </div>
           </Toolbar>
-      </AppBar>
+        </AppBar>
         <nav className={classes.drawer} aria-label="mailbox folders">
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           {/* Helps in responsive design on mobile devices */}
@@ -190,10 +206,10 @@ function ResponsiveDrawer(props) {
               open={mobileOpen}
               onClose={handleDrawerToggle}
               classes={{
-                paper: classes.drawerPaper
+                paper: classes.drawerPaper,
               }}
               ModalProps={{
-                keepMounted: true // Better open performance on mobile.
+                keepMounted: true, // Better open performance on mobile.
               }}
             >
               {drawer}
@@ -203,7 +219,7 @@ function ResponsiveDrawer(props) {
           <Hidden xsDown implementation="css">
             <Drawer
               classes={{
-                paper: classes.drawerPaper
+                paper: classes.drawerPaper,
               }}
               variant="permanent"
               open
@@ -218,19 +234,18 @@ function ResponsiveDrawer(props) {
           {/* Specifying switch from React-router to render the linked component */}
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
+            <Route path="/login" component={SignIn} />
             <Route path="/signup" component={SignUp} />
-            <Route path="/events" component={Events}/>
-            <Route path="/clubs" component={Clubs}/>
-            <Route path="/resources" component={Resources}/>            
-            <Route path="/contact" component={Contact}/>
-            
+            <Route path="/events" component={Events} />
+            <Route path="/clubs" component={Clubs} />
+            <Route path="/resources" component={Resources} />
+            <Route path="/contact" component={Contact} />
           </Switch>
         </main>
       </BrowserRouter>
     </div>
-  );}
-
+  );
+}
 
 ResponsiveDrawer.propTypes = {
   /**
@@ -239,8 +254,7 @@ ResponsiveDrawer.propTypes = {
    */
   container: PropTypes.instanceOf(
     typeof Element === "undefined" ? Object : Element
-  )
+  ),
 };
 
 export default ResponsiveDrawer;
-
