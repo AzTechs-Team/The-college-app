@@ -22,6 +22,7 @@ import Events from "../Containers/Events";
 import Clubs from "../Containers/Clubs";
 import Contact from "../Containers/Contact";
 import Resources from "../Containers/Resources";
+import StickyFooter from "./Footer";
 import Button from "@material-ui/core/Button";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
@@ -44,7 +45,8 @@ const useStyles = makeStyles((theme) => ({
       flexShrink: 0,
     },
     zIndex: 10,
-    height: "90vh",
+    height: "auto",
+    border: "3px solid black",
   },
   appBar: {
     marginLeft: drawerWidth,
@@ -84,6 +86,24 @@ const useStyles = makeStyles((theme) => ({
       paddingRight: "10px",
     },
   },
+  btn_1: {
+    backgroundColor: "#e84a5f",
+    marginRight: "20px",
+    "&:hover": {
+      backgroundColor: "#2a363b",
+      color: "#e84a5f",
+      boxShadow: "none",
+    },
+    borderRadius: "5px",
+    boxShadow: "none",
+  },
+  sidebar: {
+    backgroundColor: "#363636",
+    height: "100vh",
+  },
+  tabs_tabs: {
+    color: "white",
+  },
 }));
 
 //Making drawer responsive
@@ -99,7 +119,7 @@ function ResponsiveDrawer(props) {
 
   //Defining data of drawer component
   const drawer = (
-    <div>
+    <div className={classes.sidebar}>
       <div className={`${classes.toolbar} top-nav`}>
         <img
           src={require("../Images/Logo.png")}
@@ -114,135 +134,184 @@ function ResponsiveDrawer(props) {
       </div>
       <Divider />
       <List>
-        <ListItem key="Events" component={Link} to="/events">
+        <ListItem
+          key="Events"
+          component={Link}
+          to="/events"
+          className={classes.tabs_tabs}
+        >
           <ListItemIcon>
-            <EventAvailableIcon />
+            <EventAvailableIcon className={classes.tabs_tabs} />
           </ListItemIcon>
           <ListItemText primary="Events" />
         </ListItem>
-        <ListItem key="Clubs" component={Link} to="/clubs">
+        <ListItem
+          key="Clubs"
+          component={Link}
+          to="/clubs"
+          className={classes.tabs_tabs}
+        >
           <ListItemIcon>
-            <GroupAddIcon />
+            <GroupAddIcon className={classes.tabs_tabs} />
           </ListItemIcon>
-          <ListItemText primary="Clubs" />
+          <ListItemText primary="Clubs" className={classes.tabs_tabs} />
         </ListItem>
-        <ListItem key="Resources" component={Link} to="/resources">
+        <ListItem
+          key="Resources"
+          component={Link}
+          to="/resources"
+          className={classes.tabs_tabs}
+        >
           <ListItemIcon>
-            <FileCopyIcon />
+            <FileCopyIcon className={classes.tabs_tabs} />
           </ListItemIcon>
-          <ListItemText primary="Resources" />
+          <ListItemText primary="Resources" className={classes.tabs_tabs} />
         </ListItem>
-        <ListItem key="Contact" component={Link} to="/contact">
+        <ListItem
+          key="Contact"
+          component={Link}
+          to="/contact"
+          className={classes.tabs_tabs}
+        >
           <ListItemIcon>
-            <AlternateEmailIcon />
+            <AlternateEmailIcon className={classes.tabs_tabs} />
           </ListItemIcon>
-          <ListItemText primary="Contact" />
+          <ListItemText primary="Contact" className={classes.tabs_tabs} />
+        </ListItem>
+        <ListItem
+          key="Newsletter"
+          component={Link}
+          to="/newsletter"
+          className={classes.tabs_tabs}
+        >
+          <ListItemIcon>
+            <GroupAddIcon className={classes.tabs_tabs} />
+          </ListItemIcon>
+          <ListItemText primary="Newsletter" className={classes.tabs_tabs} />
         </ListItem>
         <Divider style={{ marginTop: "30px" }} />
-        <ListItem key="Help" component={Link} to="/help">
+        <ListItem
+          key="Help"
+          component={Link}
+          to="/help"
+          className={classes.tabs_tabs}
+        >
           <ListItemIcon>
-            <HelpIcon />
+            <HelpIcon className={classes.tabs_tabs} />
           </ListItemIcon>
-          <ListItemText primary="Help" />
+          <ListItemText primary="Help" className={classes.tabs_tabs} />
         </ListItem>
       </List>
     </div>
   );
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      {/*Adding BrowserRouter from React-router to navigate between link paths */}
-      <BrowserRouter>
-        {/* Displaying top-nav bar */}
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar className="top-nav">
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              className={classes.menuButton}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Link to="/">
-              <img
-                src={require("../Images/Logo.png")}
-                style={{ height: "45px" }}
-                alt="logo"
-                className={classes.logoHide}
-              />
-            </Link>
-            <Typography
-              variant="h5"
-              align="center"
-              noWrap
-              component={Link}
-              to="/"
-              className="title"
-              style={{ fontWeight: "bold" }}
-            >
-              CLUSTER
-            </Typography>
-            <div className={classes.toolbarButtons}>
-              <Button color="inherit" component={Link} to="/login">
-                Login
-              </Button>
-              <Button color="inherit" component={Link} to="/signup">
-                Signup
-              </Button>
-            </div>
-          </Toolbar>
-        </AppBar>
-        <nav className={classes.drawer} aria-label="mailbox folders">
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          {/* Helps in responsive design on mobile devices */}
-          <Hidden smUp implementation="css">
-            <Drawer
-              container={container}
-              variant="temporary"
-              anchor={theme.direction === "rtl" ? "right" : "left"}
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              classes={{
-                paper: classes.drawerPaper,
-              }}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
-            >
-              {drawer}
-            </Drawer>
-          </Hidden>
-          {/* Helps in display on larger screens like laptop and tablets */}
-          <Hidden xsDown implementation="css">
-            <Drawer
-              classes={{
-                paper: classes.drawerPaper,
-              }}
-              variant="permanent"
-              open
-            >
-              {drawer}
-            </Drawer>
-          </Hidden>
-        </nav>
-        {/* Main content that is display */}
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          {/* Specifying switch from React-router to render the linked component */}
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={SignIn} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/events" component={Events} />
-            <Route path="/clubs" component={Clubs} />
-            <Route path="/resources" component={Resources} />
-            <Route path="/contact" component={Contact} />
-          </Switch>
-        </main>
-      </BrowserRouter>
+    <div>
+      <div className={classes.root}>
+        <CssBaseline />
+        {/*Adding BrowserRouter from React-router to navigate between link paths */}
+        <BrowserRouter>
+          {/* Displaying top-nav bar */}
+          <AppBar position="fixed" className={classes.appBar}>
+            <Toolbar className="top-nav">
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                className={classes.menuButton}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Link to="/">
+                <img
+                  src={require("../Images/Logo.png")}
+                  style={{ height: "45px" }}
+                  alt="logo"
+                  className={classes.logoHide}
+                />
+              </Link>
+              <Typography
+                variant="h5"
+                align="center"
+                noWrap
+                component={Link}
+                to="/"
+                className="title"
+                style={{ fontWeight: "bold" }}
+              >
+                CLUSTER
+              </Typography>
+              <div className={classes.toolbarButtons}>
+                <Button
+                  variant="contained"
+                  className={classes.btn_1}
+                  component={Link}
+                  to="/login"
+                >
+                  Log in
+                </Button>
+                <Button
+                  variant="contained"
+                  className={classes.btn_1}
+                  component={Link}
+                  to="/signup"
+                >
+                  Sign up
+                </Button>
+              </div>
+            </Toolbar>
+          </AppBar>
+          <nav className={classes.drawer} aria-label="mailbox folders">
+            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+            {/* Helps in responsive design on mobile devices */}
+            <Hidden smUp implementation="css">
+              <Drawer
+                container={container}
+                variant="temporary"
+                anchor={theme.direction === "rtl" ? "right" : "left"}
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                ModalProps={{
+                  keepMounted: true, // Better open performance on mobile.
+                }}
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+            {/* Helps in display on larger screens like laptop and tablets */}
+            <Hidden xsDown implementation="css">
+              <Drawer
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                variant="permanent"
+                open
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+          </nav>
+          {/* Main content that is display */}
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            {/* Specifying switch from React-router to render the linked component */}
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/login" component={SignIn} />
+              <Route path="/signup" component={SignUp} />
+              <Route path="/events" component={Events} />
+              <Route path="/clubs" component={Clubs} />
+              <Route path="/resources" component={Resources} />
+              <Route path="/contact" component={Contact} />
+            </Switch>
+          </main>
+        </BrowserRouter>
+      </div>
+      <StickyFooter />
     </div>
   );
 }
