@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
       flexShrink: 0,
     },
     zIndex: 10,
-    height: "auto",
+    height: "90vh",
     border: "3px solid black",
   },
   appBar: {
@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   },
   sidebar: {
     backgroundColor: "#363636",
-    height: "100vh",
+    height: "auto",
   },
   tabs_tabs: {
     color: "white",
