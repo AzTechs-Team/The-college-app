@@ -4,14 +4,14 @@ import LogoCard from "../Components/LogoCards";
 import Grid from "@material-ui/core/Grid";
 import About from "../Components/About";
 import Recent from "../Components/Recent";
-import Footer from "../Components/Footer";
 import { Typography } from "@material-ui/core";
+import '../Styles/Home.css'
 
 //declare Component home, to be rendered inside conent of Navbar component
 function Home() {
   return (
-    <div style={{ backgroundColor: "black" }}>
-      {/* display Carousel        */}
+    <div id="Home" >
+      {/* display Carousel*/}
       <Carousel />
 
       {/* Used grid component of material ui to align cards and make it responsive */}

@@ -1,11 +1,10 @@
-div#login, #signup{
-
-    margin-left: 210px;
-    
+div#Home{
+    background-color: black;
+    margin-left: 190px;
 }
 
 @media only screen and (max-width: 600px) {
-    div#login, #signup{
+    div#Home{
       margin-left: 0;
     }
   }

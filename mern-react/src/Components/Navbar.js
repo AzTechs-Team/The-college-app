@@ -14,21 +14,14 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
-import Home from "../Containers/Home";
-import SignIn from "../Containers/Login";
-import SignUp from "../Containers/SignUp";
-import Events from "../Containers/Events";
-import Clubs from "../Containers/Clubs";
-import Contact from "../Containers/Contact";
-import Resources from "../Containers/Resources";
-import StickyFooter from "./Footer";
+import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
 import HelpIcon from "@material-ui/icons/Help";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import "../Styles/Navbar.css";
 
 //Drawer width
@@ -70,11 +63,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  content: {
-    flexGrow: 1,
-    backgroundColor: "white",
-    paddingTop: "49px",
-  },
+
   toolbarButtons: {
     marginLeft: "auto",
     marginRight: 20,
@@ -88,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
   btn_1: {
     backgroundColor: "#e84a5f",
-    marginRight: "20px",
+    marginRight: "10px",
     "&:hover": {
       backgroundColor: "#2a363b",
       color: "#e84a5f",
@@ -96,6 +85,9 @@ const useStyles = makeStyles((theme) => ({
     },
     borderRadius: "5px",
     boxShadow: "none",
+  },
+  hide:{
+    display:'none'
   },
   sidebar: {
     backgroundColor: "#363636",
@@ -107,8 +99,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //Making drawer responsive
-function ResponsiveDrawer(props) {
-  const { container } = props;
+function Navbar(props) {
+
+  const { container,onRouteChange,loginStatus,loggedIn} = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -134,6 +127,17 @@ function ResponsiveDrawer(props) {
       </div>
       <Divider />
       <List>
+        <ListItem
+          key="User Profile"
+          component={Link}
+          to="/user"
+          className={loginStatus?(classes.tabs_tabs):(classes.hide)}
+        >
+          <ListItemIcon>
+            <AccountCircleIcon className={classes.tabs_tabs} />
+          </ListItemIcon>
+          <ListItemText primary="User Profile" />
+        </ListItem>
         <ListItem
           key="Events"
           component={Link}
@@ -178,17 +182,6 @@ function ResponsiveDrawer(props) {
           </ListItemIcon>
           <ListItemText primary="Contact" className={classes.tabs_tabs} />
         </ListItem>
-        <ListItem
-          key="Newsletter"
-          component={Link}
-          to="/newsletter"
-          className={classes.tabs_tabs}
-        >
-          <ListItemIcon>
-            <GroupAddIcon className={classes.tabs_tabs} />
-          </ListItemIcon>
-          <ListItemText primary="Newsletter" className={classes.tabs_tabs} />
-        </ListItem>
         <Divider style={{ marginTop: "30px" }} />
         <ListItem
           key="Help"
@@ -210,7 +203,7 @@ function ResponsiveDrawer(props) {
       <div className={classes.root}>
         <CssBaseline />
         {/*Adding BrowserRouter from React-router to navigate between link paths */}
-        <BrowserRouter>
+
           {/* Displaying top-nav bar */}
           <AppBar position="fixed" className={classes.appBar}>
             <Toolbar className="top-nav">
@@ -239,13 +232,18 @@ function ResponsiveDrawer(props) {
                 to="/"
                 className="title"
                 style={{ fontWeight: "bold" }}
+                onClick={()=>{
+                  onRouteChange('home');
+                  }
+              }
               >
                 CLUSTER
               </Typography>
               <div className={classes.toolbarButtons}>
                 <Button
                   variant="contained"
-                  className={classes.btn_1}
+                  className={loginStatus?(classes.hide):(classes.btn_1)}
+                  onClick={()=>{onRouteChange('login');}}
                   component={Link}
                   to="/login"
                 >
@@ -253,11 +251,24 @@ function ResponsiveDrawer(props) {
                 </Button>
                 <Button
                   variant="contained"
-                  className={classes.btn_1}
+                  className={loginStatus?(classes.hide):(classes.btn_1)}
                   component={Link}
                   to="/signup"
+                  onClick={()=>{onRouteChange('signup')}}
                 >
                   Sign up
+                </Button>
+                <Button
+                  variant="contained"
+                  className={loginStatus?(classes.btn_1):(classes.hide)}
+                  component={Link}
+                  to="/home"
+                  onClick={()=>{
+                    onRouteChange('home');
+                    loggedIn(false)
+                  }}
+                >
+                  Sign out
                 </Button>
               </div>
             </Toolbar>
@@ -295,28 +306,11 @@ function ResponsiveDrawer(props) {
               </Drawer>
             </Hidden>
           </nav>
-          {/* Main content that is display */}
-          <main className={classes.content}>
-            <div className={classes.toolbar} />
-            {/* Specifying switch from React-router to render the linked component */}
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={SignIn} />
-              <Route path="/signup" component={SignUp} />
-              <Route path="/events" component={Events} />
-              <Route path="/clubs" component={Clubs} />
-              <Route path="/resources" component={Resources} />
-              <Route path="/contact" component={Contact} />
-            </Switch>
-          </main>
-        </BrowserRouter>
-      </div>
-      <StickyFooter />
-    </div>
-  );
+          </div>
+          </div>);
 }
 
-ResponsiveDrawer.propTypes = {
+Navbar.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -326,4 +320,4 @@ ResponsiveDrawer.propTypes = {
   ),
 };
 
-export default ResponsiveDrawer;
+export default Navbar;
