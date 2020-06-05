@@ -3,6 +3,7 @@ import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
 import '../Styles/Carousel.css';
 
+//decalring a constant array with information about carousel
 const content = [
 	{
 		title: 'Vulputate Mollis Ultricies Fermentum Parturient',
@@ -33,31 +34,28 @@ const content = [
 	}
 ];
 
-
+//declaring and exporting function "Carousle"
 function Carousel(){
     return(
-        <Slider autoplay="10" >
+        
+        <Slider autoplay={1000} >
 			{content.map((item, index) => (
 				<div
 					key={index}
 					className="slider-content"
-					style={{ background: `url('${item.image}') no-repeat center center` }}
+					style={{ background: `url('${item.image}') no-repeat center center`
+				}}
 				>
-					<div className="inner">
+					{/* <div className="inner">
 						<h1>{item.title}</h1>
 						<p>{item.description}</p>
 						<button>{item.button}</button>
-					</div>
+					</div> */}
 					
 				</div>
 			))}
 		</Slider>
-        // <Slider>
-        // {content.map((article, index) => <div key={index}>
-        //     <h2>{article.title}</h2>
-        //     <div>{article.description}</div>
-        // </div>)}
-        // </Slider>
+      
     )
     
     

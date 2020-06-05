@@ -1,27 +1,23 @@
-*{
-    margin:0;
-    padding:0;
+.top-nav {
+  background-color: #2a363b;
 }
 
-div.nav-bar{
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 3px #444;
-    padding:10px;
+/* .sidebar {
+  background-color: teal;
+  color: white;
+} */
+
+/* .btn_1 {
+  margin-left: 10px;
+  background-color: teal;
+} */
+
+.title {
+  color: white;
+  text-decoration: none;
+  text-align: center;
 }
-ul{
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    text-decoration: none;
-    list-style-type: none;
-    padding-top: 5px;
-}
-button{
-    padding:5px 12px;
-}
-#log-in{
-    margin-left:45em;
-}
-#sign-up{
-    margin-left: 2em;
+
+.nav-btn {
+  margin-left: "auto";
 }
