@@ -12,6 +12,10 @@ const styles = theme => ({
     marginTop:40,
     marginBottom:23,
   },
+  marginLeft:190,
+  [theme.breakpoints.down("xs")]: {
+    marginLeft:0
+  },
 });
 
 //decalring function
