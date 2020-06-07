@@ -14,14 +14,14 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
 import HelpIcon from "@material-ui/icons/Help";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import "../Styles/Navbar.css";
 
 //Drawer width
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       flexShrink: 0,
     },
     zIndex: 10,
-    height: "90vh",
+    height: "auto",
     border: "3px solid black",
   },
   appBar: {
@@ -86,12 +86,12 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     boxShadow: "none",
   },
-  hide:{
-    display:'none'
+  hide: {
+    display: "none",
   },
   sidebar: {
     backgroundColor: "#363636",
-    height: "auto",
+    height: "100vh",
   },
   tabs_tabs: {
     color: "white",
@@ -100,8 +100,7 @@ const useStyles = makeStyles((theme) => ({
 
 //Making drawer responsive
 function Navbar(props) {
-
-  const { container,onRouteChange,loginStatus,loggedIn} = props;
+  const { container, onRouteChange, loginStatus, loggedIn } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -131,7 +130,7 @@ function Navbar(props) {
           key="User Profile"
           component={Link}
           to="/user"
-          className={loginStatus?(classes.tabs_tabs):(classes.hide)}
+          className={loginStatus ? classes.tabs_tabs : classes.hide}
         >
           <ListItemIcon>
             <AccountCircleIcon className={classes.tabs_tabs} />
@@ -204,110 +203,114 @@ function Navbar(props) {
         <CssBaseline />
         {/*Adding BrowserRouter from React-router to navigate between link paths */}
 
-          {/* Displaying top-nav bar */}
-          <AppBar position="fixed" className={classes.appBar}>
-            <Toolbar className="top-nav">
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                className={classes.menuButton}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Link to="/">
-                <img
-                  src={require("../Images/Logo.png")}
-                  style={{ height: "45px" }}
-                  alt="logo"
-                  className={classes.logoHide}
-                />
-              </Link>
-              <Typography
-                variant="h5"
-                align="center"
-                noWrap
+        {/* Displaying top-nav bar */}
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar className="top-nav">
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Link to="/">
+              <img
+                src={require("../Images/Logo.png")}
+                style={{ height: "45px" }}
+                alt="logo"
+                className={classes.logoHide}
+              />
+            </Link>
+            <Typography
+              variant="h5"
+              align="center"
+              noWrap
+              component={Link}
+              to="/"
+              className="title"
+              style={{ fontWeight: "bold" }}
+              onClick={() => {
+                onRouteChange("home");
+              }}
+            >
+              CLUSTER
+            </Typography>
+            <div className={classes.toolbarButtons}>
+              <Button
+                variant="contained"
+                className={loginStatus ? classes.hide : classes.btn_1}
+                onClick={() => {
+                  onRouteChange("login");
+                }}
                 component={Link}
-                to="/"
-                className="title"
-                style={{ fontWeight: "bold" }}
-                onClick={()=>{
-                  onRouteChange('home');
-                  }
-              }
+                to="/login"
               >
-                CLUSTER
-              </Typography>
-              <div className={classes.toolbarButtons}>
-                <Button
-                  variant="contained"
-                  className={loginStatus?(classes.hide):(classes.btn_1)}
-                  onClick={()=>{onRouteChange('login');}}
-                  component={Link}
-                  to="/login"
-                >
-                  Log in
-                </Button>
-                <Button
-                  variant="contained"
-                  className={loginStatus?(classes.hide):(classes.btn_1)}
-                  component={Link}
-                  to="/signup"
-                  onClick={()=>{onRouteChange('signup')}}
-                >
-                  Sign up
-                </Button>
-                <Button
-                  variant="contained"
-                  className={loginStatus?(classes.btn_1):(classes.hide)}
-                  component={Link}
-                  to="/home"
-                  onClick={()=>{
-                    onRouteChange('home');
-                    loggedIn(false)
-                  }}
-                >
-                  Sign out
-                </Button>
-              </div>
-            </Toolbar>
-          </AppBar>
-          <nav className={classes.drawer} aria-label="mailbox folders">
-            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-            {/* Helps in responsive design on mobile devices */}
-            <Hidden smUp implementation="css">
-              <Drawer
-                container={container}
-                variant="temporary"
-                anchor={theme.direction === "rtl" ? "right" : "left"}
-                open={mobileOpen}
-                onClose={handleDrawerToggle}
-                classes={{
-                  paper: classes.drawerPaper,
-                }}
-                ModalProps={{
-                  keepMounted: true, // Better open performance on mobile.
+                Log in
+              </Button>
+              <Button
+                variant="contained"
+                className={loginStatus ? classes.hide : classes.btn_1}
+                component={Link}
+                to="/signup"
+                onClick={() => {
+                  onRouteChange("signup");
                 }}
               >
-                {drawer}
-              </Drawer>
-            </Hidden>
-            {/* Helps in display on larger screens like laptop and tablets */}
-            <Hidden xsDown implementation="css">
-              <Drawer
-                classes={{
-                  paper: classes.drawerPaper,
+                Sign up
+              </Button>
+              <Button
+                variant="contained"
+                className={loginStatus ? classes.btn_1 : classes.hide}
+                component={Link}
+                to="/home"
+                onClick={() => {
+                  onRouteChange("home");
+                  loggedIn(false);
                 }}
-                variant="permanent"
-                open
               >
-                {drawer}
-              </Drawer>
-            </Hidden>
-          </nav>
-          </div>
-          </div>);
+                Sign out
+              </Button>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <nav className={classes.drawer} aria-label="mailbox folders">
+          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+          {/* Helps in responsive design on mobile devices */}
+          <Hidden smUp implementation="css">
+            <Drawer
+              container={container}
+              variant="temporary"
+              anchor={theme.direction === "rtl" ? "right" : "left"}
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+          {/* Helps in display on larger screens like laptop and tablets */}
+          <Hidden xsDown implementation="css">
+            <Drawer
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              variant="permanent"
+              open
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+        </nav>
+      </div>
+    </div>
+  );
 }
 
 Navbar.propTypes = {

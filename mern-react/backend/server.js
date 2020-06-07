@@ -1,10 +1,17 @@
 const express = require("express");
+const app = express();
 //const bcrypt= require('bcrypt-nodejs')
 const cors = require("cors");
 
-const app = express();
+//mongoose connecting to mongoDB
+const connectDB = require("./DB/conection");
+const user = require("./DB/User");
+connectDB();
 
-const port = 3001;
+//api user model
+const userModel = require("./Api/User");
+app.use(express.json({ extended: false }));
+const port = process.env.Port || 3001;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -16,6 +23,8 @@ const signupRoute = require("./routes/signup.routes");
 const userRoute = require("./routes/user.routes");
 
 const database = require("./routes/database");
+
+app.post("/api/userModel/", userModel);
 
 app.get("/", (req, res) => {
   res.send(database.users);
