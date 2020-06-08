@@ -1,16 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const User = require("../DB/User");
-const route = express.Router();
+const router = express.Router();
 
-route.post("/api/userModel/", async (req, res) => {
-  const { firstName, lastName } = req.body;
+router.post("/signup", async (req, res) => {
+  const { name, username, email, password } = req.body;
   let user = {};
-  user.firstName = firstName;
-  user.lastName = lastName;
+  user.name = name;
+  user.username = username;
+  user.email = email;
+  user.password = password;
   let userModel = new User(user);
   await userModel.save();
   res.json(userModel);
 });
 
-module.exports = route;
+module.exports = router;

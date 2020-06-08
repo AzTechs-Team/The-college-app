@@ -9,7 +9,7 @@ const user = require("./DB/User");
 connectDB();
 
 //api user model
-const userModel = require("./Api/User");
+// const userModel = require("./Api/User");
 app.use(express.json({ extended: false }));
 const port = process.env.Port || 3001;
 
@@ -24,7 +24,7 @@ const userRoute = require("./routes/user.routes");
 
 const database = require("./routes/database");
 
-app.post("/api/userModel/", userModel);
+// app.post("/signup", userModel);
 
 app.get("/", (req, res) => {
   res.send(database.users);
