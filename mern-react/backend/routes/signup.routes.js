@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const router = express.Router();
-const Us  er = require("../DB/User");
+const User = require("../DB/User");
 // const database = require("./database");
 
 router.post("/signup", async (req, res) => {
