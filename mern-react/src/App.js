@@ -7,8 +7,10 @@ import { Route} from "react-router-dom";
 import Login from "./Containers/login.shreya";
 import UserHome from "./Containers/UserHome";
 import SignUp from "./Containers/Signup.shreya";
-
-
+import Events from './Containers/Events';
+import Clubs from './Containers/Clubs';
+import Resources from './Containers/Resources';
+import Contact from './Containers/Contact';
 
 
 //Only navbar is defined as the content to be rendered is inside navbar
@@ -30,7 +32,7 @@ class App extends Component{
   loadUser = (data) =>{
     this.setState({
       user:{
-        id:data.id,
+        id:data._id,
         username:data.username,
         name:data.name,
         email:data.email
@@ -68,7 +70,23 @@ class App extends Component{
               :(
                 this.state.route==='user'
                 ?<Route link='/user'><UserHome name={this.state.user.name} /></Route>
-                :<h1>oops</h1>
+                :(
+                  this.state.route==='events'
+                  ?<Route link="/events"><Events/></Route>
+                  :(
+                    this.state.route==='clubs'
+                    ?<Route link="/clubs"><Clubs /></Route>
+                    :(
+                      this.state.route==='resources'
+                      ?<Route link="/resources"><Resources/></Route>
+                      :(
+                        this.state.route==='contact'
+                        ?<Route link="/contact"><Contact/></Route>
+                        :<h1>404 page not found</h1>
+                      )
+                    )
+                  )
+                )
               )
             )
           )

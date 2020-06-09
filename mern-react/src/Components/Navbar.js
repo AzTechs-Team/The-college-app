@@ -66,7 +66,10 @@ const useStyles = makeStyles((theme) => ({
 
   toolbarButtons: {
     marginLeft: "auto",
-    marginRight: 20,
+    marginRight: 5,
+    [theme.breakpoints.down("sm")]: {
+      marginRight:theme.spacing(-2),
+    },
   },
   logoHide: {
     display: "none",
@@ -78,13 +81,18 @@ const useStyles = makeStyles((theme) => ({
   btn_1: {
     backgroundColor: "#e84a5f",
     marginRight: "10px",
+    borderRadius: "5px",
+    boxShadow: "none",
+    
     "&:hover": {
       backgroundColor: "#2a363b",
       color: "#e84a5f",
       boxShadow: "none",
     },
-    borderRadius: "5px",
-    boxShadow: "none",
+    [theme.breakpoints.down("sm")]: {
+      padding:"3px 11px",
+    },
+
   },
   hide: {
     display: "none",
@@ -131,6 +139,9 @@ function Navbar(props) {
           component={Link}
           to="/user"
           className={loginStatus ? classes.tabs_tabs : classes.hide}
+          onClick={() => {
+            onRouteChange("user");
+          }}
         >
           <ListItemIcon>
             <AccountCircleIcon className={classes.tabs_tabs} />
@@ -142,6 +153,9 @@ function Navbar(props) {
           component={Link}
           to="/events"
           className={classes.tabs_tabs}
+          onClick={() => {
+            onRouteChange("events");
+          }}
         >
           <ListItemIcon>
             <EventAvailableIcon className={classes.tabs_tabs} />
@@ -153,6 +167,9 @@ function Navbar(props) {
           component={Link}
           to="/clubs"
           className={classes.tabs_tabs}
+          onClick={() => {
+            onRouteChange("clubs");
+          }}
         >
           <ListItemIcon>
             <GroupAddIcon className={classes.tabs_tabs} />
@@ -164,6 +181,9 @@ function Navbar(props) {
           component={Link}
           to="/resources"
           className={classes.tabs_tabs}
+          onClick={() => {
+            onRouteChange("resources");
+          }}
         >
           <ListItemIcon>
             <FileCopyIcon className={classes.tabs_tabs} />
@@ -175,6 +195,9 @@ function Navbar(props) {
           component={Link}
           to="/contact"
           className={classes.tabs_tabs}
+          onClick={() => {
+            onRouteChange("contact");
+          }}
         >
           <ListItemIcon>
             <AlternateEmailIcon className={classes.tabs_tabs} />
@@ -187,6 +210,9 @@ function Navbar(props) {
           component={Link}
           to="/help"
           className={classes.tabs_tabs}
+          onClick={() => {
+            onRouteChange("help");
+          }}
         >
           <ListItemIcon>
             <HelpIcon className={classes.tabs_tabs} />
@@ -221,6 +247,11 @@ function Navbar(props) {
                 style={{ height: "45px" }}
                 alt="logo"
                 className={classes.logoHide}
+                component={Link}
+                to="/"
+                onClick={() => {
+                  onRouteChange("home");
+                }}
               />
             </Link>
             <Typography

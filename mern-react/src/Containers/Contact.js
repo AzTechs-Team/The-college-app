@@ -16,6 +16,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import '../Styles/margin.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,9 +31,10 @@ const useStyles = makeStyles((theme) => ({
       width: theme.spacing(16),
       height: theme.spacing(16),
     },
-    [theme.breakpoints.down("sm")]:{
+    marginLeft:190,
+    [theme.breakpoints.down("xs")]:{
       flexDirection:'column',
-      margin:0,
+      marginLeft:0,
   }
   },
   content:{
@@ -66,6 +68,7 @@ function Contact() {
     <div>   
       <Title name="Contact Us"/>
       
+      <div id="contact">
       <div className={classes.root}>
         <Map className={classes.map}/>
           <Paper elevation={2} className={classes.content}>
@@ -107,7 +110,7 @@ function Contact() {
         </Paper>
       </div>
       
-      <Footer/>
+      </div>
     </div>
    
   );

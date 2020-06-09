@@ -14,6 +14,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button'
+import Link from '@material-ui/core/Link';
 
 //declaring styles from material ui to be used with the cards
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +40,14 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor:'#13233c',
   },
+  link:{
+    '&:hover':{
+      textDecoration:'none'
+    }
+  },
+  red:{
+    color:"red"
+  }
 }));
 
 //declaring and exporting cards. Props declared to make cards dynamic.
@@ -61,7 +70,7 @@ export default function EventCard(props) {
         action={
             <div>
             <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
+            <FavoriteIcon  />
           </IconButton>
           <IconButton aria-label="share">
             <ShareIcon />
@@ -82,9 +91,15 @@ export default function EventCard(props) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-      <Button size="small" variant="contained" style={{backgroundColor:'#ff6769',color:'white'}}>
-          Register now!
-        </Button>
+      <Link 
+        href="https://www.google.com/forms/about/" 
+        target="_blank" 
+        rel="noopener"
+        className={classes.link}>
+        <Button size="small" variant="contained" style={{backgroundColor:'#ff6769',color:'white'}}>
+            Register now!
+          </Button>
+        </Link>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,

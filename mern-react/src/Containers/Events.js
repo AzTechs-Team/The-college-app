@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid'
 import EventCard from '../Components/EventCards'
-import Footer from '../Components/Footer'
 import Title from '../Components/Title'
+import '../Styles/margin.css'
 
 //decalring Events to be rendered inside content of Navbar component
 function Events() {
@@ -12,6 +12,7 @@ function Events() {
       <Title name="Events"/>
 
       {/* Used grid component of material ui to align cards and make it responsive */}
+      <div id="events">
       <Grid container  style={{display:'flex',justifyContent:'space-evenly'}}>
         <Grid item  >
           <EventCard 
@@ -69,9 +70,8 @@ function Events() {
         </Grid>
       </Grid>
       {/* display footer */}
-      <Footer/>
     </div>
-   
+    </div>
   );
 }
 

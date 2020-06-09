@@ -26,6 +26,13 @@ const useStyles = makeStyles((theme) => ({
     width:220,
     marginRight:'27px'
   },
+  note_img:{
+    display:'flex',
+    flexDirection:'row',
+      [theme.breakpoints.down("sm")]:{
+        flexDirection:'column',
+  }
+  }
 }));
 
 
@@ -51,7 +58,7 @@ export default function TabInfo(props){
           </List>
           <br/>
       <Typography variant="h5">Notes</Typography>
-      <div style={{display:'flex',flexDirection:'row'}}>
+      <div className={classes.note_img}>
       {props.img.map((i) => (
       <Link to={`/notes/${i[1]}`} target="_blank" download>
       <CardMedia

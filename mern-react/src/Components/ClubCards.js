@@ -2,10 +2,9 @@ import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import {Link} from 'react-router-dom'
+import Link from '@material-ui/core/Link'
 
 const ClubCard=(props)=>{
-   
     return(
     <Flippy
     flipOnHover={true}
@@ -33,12 +32,20 @@ const ClubCard=(props)=>{
             <br/>
 
           <div style={{ display:'flex',justifyContent:'center',flexDirection:'row'}}>
-          <Button size="small" variant="contained" style={{backgroundColor:'#ff6769',color:'white'}}
-        component={Link} to={'/clubs'}>
+          <Link 
+        href="https://www.google.com/forms/about/" 
+        target="_blank" 
+        rel="noopener"
+        style={{textDecoration:'none'}}
+        >
+          <Button size="small" variant="contained" 
+          style={{backgroundColor:'#ff6769',color:'white',textDecoration:'none'}}
+        >
           Join Club!
-        </Button>&ensp;
-          <Button size="small" variant="contained" style={{backgroundColor:'#ff6769',color:'white'}}
-        component={Link} to={'/events'}>
+        </Button></Link>&ensp;
+          <Button size="small" variant="contained" 
+          style={{backgroundColor:'#ff6769',color:'white',textDecoration:'none'}}
+        component={Link} to='/events' >
           Checkout events!
         </Button>
         </div>

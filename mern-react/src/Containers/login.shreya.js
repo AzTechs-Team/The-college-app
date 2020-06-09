@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link, } from "react-router-dom";
-import "../Styles/Login.css";
+import "../Styles/margin.css";
 import Title from "../Components/Title";
 
 //declaring styles for Login component
@@ -57,7 +57,7 @@ class Login extends React.Component {
   })
   .then(res=>res.json())
   .then(user=>{
-      if(user.id){
+      if(user._id){
         this.props.onRouteChange('user')
         this.props.loadUser(user)
         this.props.loggedIn(true)

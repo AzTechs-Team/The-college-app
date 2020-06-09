@@ -1,15 +1,15 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import ClubCard from "../Components/ClubCards";
-import Footer from "../Components/Footer";
 import Title from "../Components/Title";
+import '../Styles/margin.css'
 
 function Club() {
   return (
     <div>
       <Title name="Clubs" />
-
-      <Grid container style={{ display: "flex", justifyContent: "center" }}>
+      <div id="clubs">
+      <Grid container  style={{display:'flex',justifyContent:'center'}}>
         <Grid item>
           <ClubCard
             name="Developer Students Club"
@@ -67,8 +67,7 @@ function Club() {
           />
         </Grid>
       </Grid>
-
-      <Footer />
+    </div>
     </div>
   );
 }

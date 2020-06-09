@@ -9,13 +9,14 @@ const styles = theme => ({
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1),
-    marginTop:40,
+    marginTop:75,
     marginBottom:23,
   },
-  marginLeft:190,
+  title:{
+    marginLeft:190,
   [theme.breakpoints.down("xs")]: {
     marginLeft:0
-  },
+  }}
 });
 
 //decalring function
@@ -24,13 +25,13 @@ function Title(props) {
   const { classes } = props;
 
   return (
-
+      <div className={classes.title}>
       <Paper className={classes.root} elevation={0}>
         <Typography variant="h4" align="center">
         {props.name}
         </Typography>
       </Paper>
-  
+      </div>
   );
 }
 
