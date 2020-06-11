@@ -42,6 +42,16 @@ class App extends Component{
 
   loggedIn=(status)=>{
     this.setState({loginStatus:status})
+    if(!this.state.loginStatus){
+      this.setState({
+        user:{
+          id:'',
+          username:'',
+          name:'',
+          email:''
+        }
+      })
+    }
   }
 
   onRouteChange=(route)=>{
@@ -56,7 +66,7 @@ class App extends Component{
         {/* <Home/> */}
 
         {this.state.route==="home"
-          ?<Route exact link="/" component={Home}/>
+          ?<Route link="/" component={Home}/>
           :(
             this.state.route==='login'
             ?<Route link="/login"><Login onRouteChange={this.onRouteChange} 
@@ -69,7 +79,7 @@ class App extends Component{
               )
               :(
                 this.state.route==='user'
-                ?<Route link='/user'><UserHome name={this.state.user.name} /></Route>
+                ?<Route link='/user'><UserHome user={this.state.user} /></Route>
                 :(
                   this.state.route==='events'
                   ?<Route link="/events"><Events/></Route>
@@ -91,8 +101,6 @@ class App extends Component{
             )
           )
         }
-        
-
         <Footer/>
       </div>
     );

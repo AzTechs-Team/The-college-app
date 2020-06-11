@@ -1,14 +1,25 @@
 import React from "react";
-import About from "../Components/About";
+import { makeStyles} from '@material-ui/core/styles';
+import ImageBanner from '../Components/ImageBanner';
+import UserInfo from '../Components/UserInfo';
+import '../Styles/margin.css'
+
+const useStyles = makeStyles({
+  root: {
+    backgroundColor:'#0c0d0e',
+    color:'white'
+    },
+});
+
 
 function UserHome(props) {
-
+  const classes = useStyles();
     return (
-        <div >     
-          <br/><br/><br/><br/><br/>
-          <About
-            desc={`${props.name} helllooo!!!!!!`}
-            btn="Button!"
+        <div id="user" className={classes.root}>     
+          <ImageBanner username={props.user['username']}/>
+          <UserInfo 
+          email={props.user['email']} 
+          name={props.user['name']}
           />
         </div>
       );

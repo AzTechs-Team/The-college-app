@@ -15,7 +15,6 @@ router.post("/signup", async (req, res) => {
   let userModel = new User(user);
   await userModel.save();
   res.json(userModel);
-  console.log(user.password)
 });
 
 module.exports = router;

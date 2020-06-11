@@ -2,15 +2,13 @@ div#login, #signup,#events,#clubs,#resources{
     margin-left: 210px;
 }
 
-div #about{
+div #about,#user{
   margin-left: 190px;
 }
 
 @media only screen and (max-width: 600px) {
-    div#login, #signup,#events,#clubs,#resources{
+    div#login, #signup,#events,#clubs,#resources,#about,#user{
       margin-left: 0;
     }
-    div#about{
-      margin-left: 0;
-    }
+
   }

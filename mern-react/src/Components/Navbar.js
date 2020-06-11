@@ -29,9 +29,15 @@ const drawerWidth = 190;
 
 //Style component
 const useStyles = makeStyles((theme) => ({
+
   root: {
     display: "flex",
-  },
+    "& .MuiPaper-root":{
+      backgroundColor:"#2a363b",
+      boxShadow:'2px 2px 6px #000'
+    }
+  }
+  ,
   drawer: {
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
@@ -39,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
     zIndex: 10,
     height: "auto",
-    border: "3px solid black",
+    border: 0,
   },
   appBar: {
     marginLeft: drawerWidth,
@@ -83,7 +89,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "10px",
     borderRadius: "5px",
     boxShadow: "none",
-    
     "&:hover": {
       backgroundColor: "#2a363b",
       color: "#e84a5f",
