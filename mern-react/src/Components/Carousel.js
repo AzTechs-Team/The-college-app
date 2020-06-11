@@ -38,7 +38,7 @@ const content = [
 function Carousel(){
     return(
         
-        <Slider autoplay={1000} >
+        <Slider autoplay={3000} >
 			{content.map((item, index) => (
 				<div
 					key={index}

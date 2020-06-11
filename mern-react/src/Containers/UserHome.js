@@ -20,6 +20,8 @@ function UserHome(props) {
           <UserInfo 
           email={props.user['email']} 
           name={props.user['name']}
+          phone= {props.user['phone']}
+          department = {props.user['department']}
           />
         </div>
       );

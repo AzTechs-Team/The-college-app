@@ -29,6 +29,8 @@ class Signup extends React.Component {
     username: "",
     email: "",
     password: "",
+    phone:"",
+    department:""
   };
 
   //declaring function to change state based on user input
@@ -48,6 +50,14 @@ class Signup extends React.Component {
     this.setState({
       username: e.target.value,
     });
+  handlePhoneChange = (e) =>
+    this.setState({
+      phone: e.target.value,
+    });
+  handleDepartmentChange = (e) =>
+    this.setState({
+      department: e.target.value,
+    });
 
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
@@ -59,7 +69,9 @@ class Signup extends React.Component {
                 email:this.state.email,
                 password:this.state.password,
                 name:this.state.name,
-                username:this.state.username
+                username:this.state.username,
+                phone:this.state.department,
+                department:this.state.department
             })
         })
         .then(res=>res.json())
@@ -95,6 +107,22 @@ class Signup extends React.Component {
               variant="outlined"
               value={this.state.username}
               onChange={this.handleUserChange}
+            /><br/>
+            <TextField
+              id="outlined-username-input"
+              label="Phone"
+              type="text"
+              variant="outlined"
+              value={this.state.phone}
+              onChange={this.handlePhoneChange}
+            /><br/>
+            <TextField
+              id="outlined-username-input"
+              label="Department"
+              type="text"
+              variant="outlined"
+              value={this.state.department}
+              onChange={this.handleDepartmentChange}
             />
             <br />
             <TextField

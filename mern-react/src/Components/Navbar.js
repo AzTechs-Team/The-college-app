@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     "& .MuiPaper-root":{
-      backgroundColor:"#2a363b",
-      boxShadow:'2px 2px 6px #000'
+      backgroundColor:"#1d1d1d",
+      boxShadow:'3px 3px 8px #000'
     }
   }
   ,
@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     "&:hover": {
       backgroundColor: "#2a363b",
-      color: "#e84a5f",
+      color: "#171717",
       boxShadow: "none",
     },
     [theme.breakpoints.down("sm")]: {
@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
   },
   sidebar: {
-    backgroundColor: "#363636",
+    backgroundColor: "#1d1d1d",
     height: "100vh",
   },
   tabs_tabs: {

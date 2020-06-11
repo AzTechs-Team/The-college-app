@@ -24,7 +24,9 @@ class App extends Component{
         id:'',
         name:'',
         email:'',
-        username:''
+        username:'',
+        phone:'',
+        department:''
       }
     }
   }
@@ -35,7 +37,9 @@ class App extends Component{
         id:data._id,
         username:data.username,
         name:data.name,
-        email:data.email
+        email:data.email,
+        phone:data.phone,
+        department:data.department
       }
     })
   }
@@ -48,7 +52,9 @@ class App extends Component{
           id:'',
           username:'',
           name:'',
-          email:''
+          email:'',
+          phone:'',
+          department:''
         }
       })
     }
@@ -58,49 +64,56 @@ class App extends Component{
     this.setState({route:route})
   }
 
+  renderSwitch(param) {
+    switch(param) {
+      case 'home':
+        return <Route exact link="/home" component={Home}/>;
+      case 'login':
+        return <Route link="/login">
+                <Login onRouteChange={this.onRouteChange} loadUser={this.loadUser} 
+                loggedIn={this.loggedIn} loginStatus={this.state.loginStatus}/>
+              </Route>
+      case 'signup':
+        return <Route link="/signup">
+                <SignUp onRouteChange={this.onRouteChange} 
+                loadUser={this.loadUser} loggedIn={this.loggedIn}/>
+              </Route>
+      case 'user':
+        return <Route link='/user'>
+                <UserHome user={this.state.user} />
+              </Route>
+      case 'events':
+        return <Route link="/events">
+                <Events/>
+              </Route>
+      case 'clubs':
+        return <Route link="/clubs">
+                <Clubs />
+              </Route>
+      case 'resources':
+        return <Route link="/resources">
+                <Resources/>
+              </Route>
+      case 'contact':
+        return <Route link="/contact">
+                <Contact/>
+              </Route>
+      default:
+        return '404 page not found';
+    }
+  }
+
   render(){
     
     return (
       <div>
-        <Navbar onRouteChange={this.onRouteChange} loginStatus={this.state.loginStatus} loggedIn={this.loggedIn}/>
-        {/* <Home/> */}
+        <Navbar 
+        onRouteChange={this.onRouteChange} 
+        loginStatus={this.state.loginStatus} 
+        loggedIn={this.loggedIn}
+        />
+        {this.renderSwitch(this.state.route)}
 
-        {this.state.route==="home"
-          ?<Route link="/" component={Home}/>
-          :(
-            this.state.route==='login'
-            ?<Route link="/login"><Login onRouteChange={this.onRouteChange} 
-            loadUser={this.loadUser} loggedIn={this.loggedIn} loginStatus={this.state.loginStatus}/></Route>
-            :(
-              this.state.route==='signup'
-              ?(
-                <Route link="/signup"><SignUp onRouteChange={this.onRouteChange} 
-                loadUser={this.loadUser} loggedIn={this.loggedIn}/></Route>
-              )
-              :(
-                this.state.route==='user'
-                ?<Route link='/user'><UserHome user={this.state.user} /></Route>
-                :(
-                  this.state.route==='events'
-                  ?<Route link="/events"><Events/></Route>
-                  :(
-                    this.state.route==='clubs'
-                    ?<Route link="/clubs"><Clubs /></Route>
-                    :(
-                      this.state.route==='resources'
-                      ?<Route link="/resources"><Resources/></Route>
-                      :(
-                        this.state.route==='contact'
-                        ?<Route link="/contact"><Contact/></Route>
-                        :<h1>404 page not found</h1>
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-        }
         <Footer/>
       </div>
     );

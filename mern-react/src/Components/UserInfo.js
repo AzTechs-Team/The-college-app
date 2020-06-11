@@ -1,10 +1,8 @@
 import React from 'react';
-import { makeStyles ,useTheme} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import CardMedia from '@material-ui/core/CardMedia';
-import { CardContent } from '@material-ui/core';
 import RegisteredEvents from './RegisteredEvents';
 
 const useStyles = makeStyles((theme) =>({
@@ -69,7 +67,7 @@ const useStyles = makeStyles((theme) =>({
 
 export default function UserInfo(props) {
   const classes = useStyles();
-  const {email,name} = props;
+  const {email,name,phone,department} = props;
   return (
     <Card className={classes.root}>
         <br/>
@@ -89,19 +87,14 @@ export default function UserInfo(props) {
                 <Typography className={classes.text}>{email}</Typography>
             </div>
             <div className={classes.row}>
-                <Typography className={classes.title}>Date of Birth:</Typography>
-                &nbsp;&nbsp;
-                <Typography className={classes.text}>1-1-2000</Typography>
-            </div>
-            <div className={classes.row}>
                 <Typography className={classes.title}>Phone:</Typography>
                 &nbsp;&nbsp;
-                <Typography className={classes.text}>9999999999</Typography>
+                <Typography className={classes.text}>{phone}</Typography>
             </div>
             <div className={classes.row}>
                 <Typography className={classes.title}>Department:</Typography>
                 &nbsp;&nbsp;
-                <Typography className={classes.text}>Computer Science</Typography>
+                <Typography className={classes.text}>{department}</Typography>
             </div>
             <br/>
             
@@ -110,7 +103,7 @@ export default function UserInfo(props) {
             style={{marginLeft:-50,backgroundColor:'#6b778d'}}/>
 
         <div>
-            <Typography className={classes.club,classes.title}>Clubs joined:</Typography>
+            <Typography className={`${classes.club} ,${classes.title}`}>Clubs joined:</Typography>
             <Typography className={classes.club}>Developer Students Club</Typography>
             <Typography className={classes.text}>Organizer</Typography>
             <Typography className={classes.club}>Mozilla club</Typography>

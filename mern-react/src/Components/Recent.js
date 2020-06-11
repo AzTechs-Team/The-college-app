@@ -24,24 +24,6 @@ const images = [
     width: '30%',
     link:"/clubs"
   },
-  {
-    url: 'carousel-one.jpg',
-    title: 'Winners of Event2',
-    width: '30%',
-    link:"/events"
-  },
-  {
-    url: 'carousel-two.jpg',
-    title: 'Club recruitments started!',
-    width: '30%',
-    link:"/clubs"
-  },
-  {
-    url: 'carousel-three.jpg',
-    title: 'Python resources added!',
-    width: '30%',
-    link:"resources"
-  },
 ];
 
 //declaring styles to be used from material ui for buttons

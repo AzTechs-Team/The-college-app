@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from '../Components/Footer'
 import Title from '../Components/Title'
 import Map from '../Components/Map'
 import Paper from '@material-ui/core/Paper'
