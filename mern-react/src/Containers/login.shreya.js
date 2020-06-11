@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Link, } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../Styles/margin.css";
 import Title from "../Components/Title";
 
@@ -23,14 +23,14 @@ const useStyles = makeStyles((theme) => ({
 //declaring login class using React Component
 class Login extends React.Component {
   //declaring state of class to help extract data from user input
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       email: "",
       password: "",
+      err: false,
     };
   }
-  
 
   //declaring function to change state "name" based on user input
   handleEmailChange = (e) =>
@@ -47,38 +47,35 @@ class Login extends React.Component {
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
-    fetch('http://localhost:3001/login',{
-      method:'post',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-          email:this.state.email,
-          password:this.state.password
+    fetch("http://localhost:3001/login", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((user) => {
+        if (user._id) {
+          this.props.onRouteChange("user");
+          this.props.loadUser(user);
+          this.props.loggedIn(true);
+        }
       })
-  })
-  .then(res=>res.json())
-  .then(user=>{
-      if(user._id){
-        this.props.onRouteChange('user')
-        this.props.loadUser(user)
-        this.props.loggedIn(true)
-
-      }
-    
-  })
+      .catch((err) => {
+        this.setState({ err: true });
+        console.log("idar tak aaya mai");
+      });
   };
 
   //Rendering components which will be returened on page
   render() {
     return (
-      <div >
+      <div>
         <Title name="Login" />
         <div id="login">
-          <form
-            className={`${useStyles.root} `}
-            
-            noValidate
-            autoComplete="off"
-          >
+          <form className={`${useStyles.root} `} noValidate autoComplete="off">
             <TextField
               id="outlined-username-input"
               label="Email"
@@ -115,13 +112,18 @@ class Login extends React.Component {
             <br />
             <br />
 
+            {this.state.err ? (
+              <Typography style={{ color: "red" }}>
+                Email/Password Incorrect
+              </Typography>
+            ) : null}
+
             <Typography>Don't have an account yet??</Typography>
             <Button color="default" component={Link} to="/signup">
               Signup Now
             </Button>
           </form>
         </div>
-       
       </div>
     );
   }

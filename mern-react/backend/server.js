@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 //const bcrypt= require('bcrypt-nodejs')
 const cors = require("cors");
 
@@ -13,9 +14,18 @@ connectDB();
 app.use(express.json({ extended: false }));
 const port = process.env.Port || 3001;
 
+// app.get("/", (req, res) => {
+//   req.sendFile(path);
+// });
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
+
+app.use(express.static("build"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "build", "index.html"));
+});
 
 //routes called
 const loginRoute = require("./routes/login.routes");
@@ -25,10 +35,6 @@ const userRoute = require("./routes/user.routes");
 const database = require("./routes/database");
 
 // app.post("/signup", userModel);
-
-app.get("/", (req, res) => {
-  res.send(database.users);
-});
 
 app.post("/login", loginRoute);
 app.post("/signup", signupRoute);
