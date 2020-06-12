@@ -1,0 +1,14 @@
+div#login, #signup,#events,#clubs,#resources{
+    margin-left: 210px;
+}
+
+div #about,#user,#footer{
+  margin-left: 190px;
+}
+
+@media only screen and (max-width: 600px) {
+    div#login, #signup,#events,#clubs,#resources,#about,#user,#footer{
+      margin-left: 0;
+    }
+
+  }
