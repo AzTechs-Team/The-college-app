@@ -11,12 +11,12 @@ connectDB();
 
 //api user model
 // const userModel = require("./Api/User");
-app.use(express.json({ extended: false }));
+// app.use(express.json({ extended: false }));
 const port = process.env.Port || 3001;
 
-// app.get("/", (req, res) => {
-//   req.sendFile(path);
-// });
+app.get("/", (req, res) => {
+  res.send("<h1>Hello World!</h1>");
+});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
