@@ -70,8 +70,8 @@ class Signup extends React.Component {
                 password:this.state.password,
                 name:this.state.name,
                 username:this.state.username,
-                phone:this.state.department,
-                department:this.state.department
+                department:this.state.department,
+                phone:this.state.phone
             })
         })
         .then(res=>res.json())
@@ -93,7 +93,7 @@ class Signup extends React.Component {
           <form className={useStyles.root} noValidate autoComplete="off" >
             <TextField
               id="outlined-name-input"
-              label="Name"
+              label="Full name"
               type="text"
               variant="outlined"
               value={this.state.name}
