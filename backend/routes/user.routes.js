@@ -2,8 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-const database = require("./database");
-
 router.post("/user", (req, res) => {
   const { id } = req.body;
   let found = false;

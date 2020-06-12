@@ -1,8 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
-var bcrypt = require('bcryptjs');
-const database = require("./database");
+var bcrypt = require("bcryptjs");
 const User = require("../DB/User");
 
 router.get("/login", (req, res) => {
@@ -11,19 +10,15 @@ router.get("/login", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
-  const dbUser = User.findOne({email})
-    .then(user => {
-      if(bcrypt.compareSync(password,user.password)){
-        res.json(user)
+  const dbUser = User.findOne({ email })
+    .then((user) => {
+      if (bcrypt.compareSync(password, user.password)) {
+        res.json(user);
+      } else {
+        console.log("Error");
       }
-      else{
-        console.log("Error")
-      }
-      
-      
-    }
-    )
-    .catch(err=>console.log(err));
+    })
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;
