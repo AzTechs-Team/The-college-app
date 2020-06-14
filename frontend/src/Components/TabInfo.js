@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection:'column',
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
+   
   },
   panel:{
     boxShadow:'1px 1px 4px #000',
@@ -50,8 +51,9 @@ export default function TabInfo(props){
             <List component="nav" aria-label="main mailbox folders">
             {props.course.map((i) => (
             <ListItem >
-              <ListItemText primary={i[0]}
-              secondary={i[1]}
+              <ListItemText primary={<Typography variant="body1" >{i[0]}</Typography>}
+              secondary={<Typography variant="body2" style={{color:'#bfbfbf'}} >
+                {i[1]}</Typography>}
               />
             </ListItem>
             ))}

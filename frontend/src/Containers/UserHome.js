@@ -6,7 +6,7 @@ import '../Styles/margin.css'
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor:'#0c0d0e',
+    backgroundColor:'#2d2d2d',
     color:'white'
     },
 });

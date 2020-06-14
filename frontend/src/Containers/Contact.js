@@ -16,6 +16,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import '../Styles/margin.css'
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
   }
   },
   content:{
+    backgroundColor:'#4e4e4e',
+    boxShadow:'3px 3px 8px #000',
+    color:'white',
     height:'57vh',
     width:'50vw',
     marginLeft:'-130px',
@@ -56,8 +60,13 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]:{
       width:'100%'
   }
+  },
+  white:{
+    color:'white'
+  },
+  grey:{
+    color:'#bfbfbf'
   }
- 
 }));
 
 //decalring Contact to be rendered inside content of Navbar component
@@ -67,33 +76,39 @@ function Contact() {
     <div>   
       <Title name="Contact Us"/>
       
-      <div id="contact">
+      <div id="contact" style={{backgroundColor:'#2d2d2d',border:0}}>
       <div className={classes.root}>
         <Map className={classes.map}/>
           <Paper elevation={2} className={classes.content}>
           <List component="nav" aria-label="main mailbox folders" >
           <ListItem >
             <ListItemIcon>
-              <HomeIcon />
+              <HomeIcon className={classes.grey}/>
             </ListItemIcon>
-            <ListItemText primary="Address" secondary="Vasna-Bhaili road, Vadodara,Gujarat"/>
+            <ListItemText primary="Address" 
+            secondary={<Typography variant="body" className={classes.white}>
+              Vasna-Bhaili road, Vadodara,Gujarat</Typography>}/>
           </ListItem>
           <ListItem>
             <ListItemIcon>
-              <PhoneIcon />
+              <PhoneIcon className={classes.grey}/>
             </ListItemIcon>
-            <ListItemText primary="Phone no." secondary="0265-2222222"/>
+            <ListItemText primary="Phone no." 
+            secondary={<Typography variant="body2" className={classes.white}>
+              0265-2222222</Typography>}/>
           </ListItem>
           <ListItem >
             <ListItemIcon>
-              <MailIcon />
+              <MailIcon className={classes.grey} />
             </ListItemIcon>
-            <ListItemText primary="Email" secondary="uni@nuv.ac.in"/>
+            <ListItemText primary="Email" 
+            secondary={<Typography variant="body2" className={classes.white}>
+                uni@nuv.ac.in
+            </Typography>}/>
           </ListItem>
           <ListItem  >
-            
             <ListItemIcon>
-              <AlternateEmailIcon />
+              <AlternateEmailIcon className={classes.grey}/>
             </ListItemIcon>
             <div style={{display:'flex',flexDirection:'column'}}>
             <ListItemText primary="Socials" /> 
@@ -108,7 +123,7 @@ function Contact() {
           </List>
         </Paper>
       </div>
-      
+      <br/><br/><br/>
       </div>
     </div>
    

@@ -1,24 +1,12 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import "../Styles/margin.css";
 import Title from "../Components/Title";
-
-//declaring styles for Login component
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+import { FormGroup } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 
 //declaring login class using React Component
 class Login extends React.Component {
@@ -72,20 +60,26 @@ class Login extends React.Component {
   //Rendering components which will be returened on page
   render() {
     return (
-      <div>
+      <div style={{backgroundColor:"#2d2d2d",color:"white"}}>
         <Title name="Login" />
-        <div id="login">
-          <form className={`${useStyles.root} `} noValidate autoComplete="off">
+        <div id="login" >
+        <Grid container 
+          style={{ display: "flex", justifyContent: "center"}}>
+            <Grid item md={5} xs={10}>
+          <form noValidate autoComplete="off">
+          <FormGroup >
             <TextField
               id="outlined-username-input"
               label="Email"
               type="text"
-              variant="outlined"
+              variant="filled"
               className="email-input"
               value={this.state.email}
               onChange={this.handleEmailChange}
+              color="secondary"
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
+              required
             />
-            <br />
             <br />
             <TextField
               id="filled-password-input"
@@ -95,35 +89,41 @@ class Login extends React.Component {
               onChange={this.handlePwdChange}
               autoComplete="current-password"
               variant="filled"
+              color="secondary"
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
+              required
             />
-            <br />
             <br />
             <Button
               variant="contained"
               onClick={this.handleData}
-              style={{
-                backgroundColor: "primary",
-              }}
+              style={{width:180,alignSelf:'center'
+            ,backgroundColor:"#e84a5f",color:"#131313",}}
               component={Link}
               to={`/user`}
             >
               Login
             </Button>
             <br />
-            <br />
-
             {this.state.err ? (
-              <Typography style={{ color: "red" }}>
-                Email/Password Incorrect
+              <Typography align="center" style={{ color: "#e84a5f" }}>
+                Email/Password Incorrect. Please try again.
               </Typography>
             ) : null}
-
-            <Typography>Don't have an account yet??</Typography>
-            <Button color="default" component={Link} to="/signup">
+              <br/><br/><br/>
+            <Typography align="center">Don't have an account yet??</Typography>
+            <Button color="default" component={Link} to="/signup"
+            style={{width:150,alignSelf:'center',
+            backgroundColor:"#bfbfbf",color:"#000"}}
+              onClick={() => {
+                this.props.onRouteChange("signup");
+              }}>
               Signup Now
             </Button>
+            </FormGroup>
           </form>
-        </div>
+          </Grid></Grid>
+        </div><br/><br/><br/><br/>
       </div>
     );
   }

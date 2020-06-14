@@ -9,13 +9,13 @@ const useStyles = makeStyles((theme) =>({
   root: {
     textAlign:'center',
     marginTop:40,
-    backgroundColor:'#0c0d0e',
+    backgroundColor:'#2d2d2d',
     color:'white'
   },
   container:{
     display:'flex',
     flexDirection:'row',
-    justifyContent:'space-evenly',
+    justifyContent:'center',
     [theme.breakpoints.down("sm")]: {
         flexDirection:'column'
       },
@@ -31,24 +31,24 @@ const useStyles = makeStyles((theme) =>({
       }
   },
   title:{
+    color:'#bfbfbf',
     fontSize:"20px",
     marginTop:"10px",
     [theme.breakpoints.down("sm")]: {
-        marginTop:'12px'
+        marginTop:'10px'
       }
   },
   text:{
     fontSize:"16px",
     marginTop:"10px",
     [theme.breakpoints.down("sm")]: {
-        marginTop:'12px'
+        marginTop:'10px'
       }
   },
   club:{
     marginTop:'10px',
     fontSize:"18px",
-    fontWeight:"bold",
-
+    fontWeight:"400",
   },
   media:{
     width:300,
@@ -62,6 +62,12 @@ const useStyles = makeStyles((theme) =>({
       textAlign:'left',
       border:0,
       boxShadow:'none'
+  },
+  club_info:{
+    textAlign:"left",
+    [theme.breakpoints.down("sm")]: {
+      textAlign:'center'
+    }
   }
 }));
 
@@ -100,19 +106,19 @@ export default function UserInfo(props) {
             
         </div>
             <Divider orientation="vertical" flexItem={true}
-            style={{marginLeft:-50,backgroundColor:'#6b778d'}}/>
+            style={{backgroundColor:'#131313',width:"2px",marginRight:40}}/>
 
-        <div>
-            <Typography className={`${classes.club} ,${classes.title}`}>Clubs joined:</Typography>
+        <div className={classes.club_info}>
+            <Typography className={`${classes.title}`}>Clubs joined:</Typography>
             <Typography className={classes.club}>Developer Students Club</Typography>
-            <Typography className={classes.text}>Organizer</Typography>
+            <Typography variant="body2">Organizer</Typography>
             <Typography className={classes.club}>Mozilla club</Typography>
-            <Typography className={classes.text}>Designer</Typography>
+            <Typography variant="body2">Designer</Typography>
         </div>
       </div>
       <br/><br/>
         <Divider variant="middle"
-         style={{backgroundColor:'#6b778d'}}/>
+         style={{backgroundColor:'#4e4e4e'}}/>
         <br/><br/>
        <Typography variant="h5">Registered events</Typography>
        <RegisteredEvents/>

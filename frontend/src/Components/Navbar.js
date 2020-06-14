@@ -19,10 +19,9 @@ import Button from "@material-ui/core/Button";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
-import HelpIcon from "@material-ui/icons/Help";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import "../Styles/Navbar.css";
+
 
 //Drawer width
 const drawerWidth = 190;
@@ -35,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiPaper-root":{
       backgroundColor:"#1d1d1d",
       boxShadow:'3px 3px 8px #000'
-    }
+    },
+    backgroundColor:'#2d2d2d',
   }
   ,
   drawer: {
@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   toolbar: {
+    backgroundColor: "#131313",
     [theme.mixins.toolbar]: {
       marginBottom: 0,
     },
@@ -90,8 +91,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     boxShadow: "none",
     "&:hover": {
-      backgroundColor: "#2a363b",
-      color: "#171717",
+      backgroundColor: "#131313",
+      color: "#e84a5f",
       boxShadow: "none",
     },
     [theme.breakpoints.down("sm")]: {
@@ -125,7 +126,7 @@ function Navbar(props) {
   //Defining data of drawer component
   const drawer = (
     <div className={classes.sidebar}>
-      <div className={`${classes.toolbar} top-nav`}>
+      <div className={`${classes.toolbar}`}>
         <img
           src={require("../Images/Logo.png")}
           style={{
@@ -210,20 +211,7 @@ function Navbar(props) {
           <ListItemText primary="Contact" className={classes.tabs_tabs} />
         </ListItem>
         <Divider style={{ marginTop: "30px" }} />
-        <ListItem
-          key="Help"
-          component={Link}
-          to="/help"
-          className={classes.tabs_tabs}
-          onClick={() => {
-            onRouteChange("help");
-          }}
-        >
-          <ListItemIcon>
-            <HelpIcon className={classes.tabs_tabs} />
-          </ListItemIcon>
-          <ListItemText primary="Help" className={classes.tabs_tabs} />
-        </ListItem>
+        
       </List>
     </div>
   );
@@ -236,7 +224,7 @@ function Navbar(props) {
 
         {/* Displaying top-nav bar */}
         <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar className="top-nav">
+          <Toolbar className={classes.toolbar}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -265,8 +253,7 @@ function Navbar(props) {
               noWrap
               component={Link}
               to="/"
-              className="title"
-              style={{ fontWeight: "bold" }}
+              style={{ fontWeight: "400",color:'white',textDecoration:'none',textAlign:'center' }}
               onClick={() => {
                 onRouteChange("home");
               }}

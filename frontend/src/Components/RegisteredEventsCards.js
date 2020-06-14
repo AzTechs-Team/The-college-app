@@ -11,12 +11,12 @@ const useStyles = makeStyles({
   root: {
     minWidth: 240,
     marginTop:'40px',
-    border:".5px solid #263859",
+    border:".5px solid #181818",
     "&:hover": {
-      backgroundColor: "#8694ad"
+      backgroundColor: "#4d4d4d"
     },
     marginRight:12,
-    backgroundColor:"#6b778d",
+    backgroundColor:"#4e4e4e",
     color:'white'
   },
   img:{
@@ -43,10 +43,10 @@ const RegisteredEventsCard=(props)=> {
           image={require(`../Images/${props.img}.jpg`)}
       /></div>
         <CardContent className={classes.content_card}>
-          <Typography variant="h5" component="h2" style={{color:'#17223b'}} >
+          <Typography variant="h5" component="h2" style={{color:'white'}} >
             {props.name}
           </Typography>
-          <Typography variant="body2" component="p" style={{color:'white'}}>
+          <Typography variant="body2" component="p" style={{color:'#bfbfbf'}}>
             {props.date}<br/>{props.time}<br/>{props.place}
             
           </Typography>
