@@ -5,8 +5,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Title from "../Components/Title";
-import '../Styles/margin.css'
-
+import "../Styles/margin.css";
 
 //declaring styles for Signup component
 const useStyles = makeStyles((theme) => ({
@@ -29,8 +28,8 @@ class Signup extends React.Component {
     username: "",
     email: "",
     password: "",
-    phone:"",
-    department:""
+    phone: "",
+    department: "",
   };
 
   //declaring function to change state based on user input
@@ -62,26 +61,26 @@ class Signup extends React.Component {
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
-    fetch('http://localhost:3001/signup',{
-            method:'post',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({
-                email:this.state.email,
-                password:this.state.password,
-                name:this.state.name,
-                username:this.state.username,
-                department:this.state.department,
-                phone:this.state.phone
-            })
-        })
-        .then(res=>res.json())
-        .then(user=>{
-            if(user){
-                this.props.loadUser(user)
-                this.props.onRouteChange('user')
-                this.props.loggedIn(true)
-            }
-        })
+    fetch(`url/signup`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name,
+        username: this.state.username,
+        department: this.state.department,
+        phone: this.state.phone,
+      }),
+    })
+      .then((res) => res.json())
+      .then((user) => {
+        if (user) {
+          this.props.loadUser(user);
+          this.props.onRouteChange("user");
+          this.props.loggedIn(true);
+        }
+      });
   };
 
   //Rendering components which will be returened on page
@@ -90,7 +89,7 @@ class Signup extends React.Component {
       <div>
         <Title name="Signup" />
         <div id="signup">
-          <form className={useStyles.root} noValidate autoComplete="off" >
+          <form className={useStyles.root} noValidate autoComplete="off">
             <TextField
               id="outlined-name-input"
               label="Full name"
@@ -107,7 +106,8 @@ class Signup extends React.Component {
               variant="outlined"
               value={this.state.username}
               onChange={this.handleUserChange}
-            /><br/>
+            />
+            <br />
             <TextField
               id="outlined-username-input"
               label="Phone"
@@ -115,7 +115,8 @@ class Signup extends React.Component {
               variant="outlined"
               value={this.state.phone}
               onChange={this.handlePhoneChange}
-            /><br/>
+            />
+            <br />
             <TextField
               id="outlined-username-input"
               label="Department"
@@ -144,9 +145,12 @@ class Signup extends React.Component {
             />
             <br />
             <br />
-            <Button variant="contained" onClick={this.handleData}
-            component={Link}
-            to={`/user`}>
+            <Button
+              variant="contained"
+              onClick={this.handleData}
+              component={Link}
+              to={`/user`}
+            >
               Signup
             </Button>
 
@@ -154,7 +158,7 @@ class Signup extends React.Component {
             <Button color="default" component={Link} to="/login">
               Login Now
             </Button>
-        </form>
+          </form>
         </div>
       </div>
     );
