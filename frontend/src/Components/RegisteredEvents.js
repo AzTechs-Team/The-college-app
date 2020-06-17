@@ -9,11 +9,6 @@ const list = [
   { name: 'event2',date:'2/1/2020',place:'Auditorium',time:'12:00pm to 2:00pm',img:'carousel-two' },
   { name: 'event3',date:'3/1/2020',place:'5th floor auditorium',time:'3:00pm to 4:00pm',img:'carousel-three' },
   { name: 'event4',date:'4/1/2020',place:'Auditorium',time:'10:00am to 11:00am',img:'carousel-one' },
-  { name: 'event5',date:'5/1/2020',place:'Online',time:'9:00am to 12:00pm',img:'carousel-two'},
-  { name: 'event6',date:'6/1/2020',place:'5th floor auditorium',time:'10:00am to 1:00pm',img:'carousel-three' },
-  { name: 'event7',date:'7/1/2020',place:'Online',time:'8:00am to 10:00am',img:'carousel-one'},
-  { name: 'event8',date:'8/1/2020',place:'Auditorium',time:'10:00am to 1:00pm',img:'carousel-two'},
-  { name: 'event9',date:'9/1/2020',place:'Online',time:'10:00am to 1:00pm',img:'carousel-three' }
 ];
 
 // All events component

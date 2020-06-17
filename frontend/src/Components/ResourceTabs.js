@@ -44,12 +44,11 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginRight:'30px',
-    marginLeft:'30px',
+    
     display:'flex',
     flexDirection:'column',
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#4e4e4e",
   //   [theme.breakpoints.down("sm")]:{
   //     overflow:'hidden',
   //     width:'auto'
@@ -77,7 +76,7 @@ export default function ResourceTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{zIndex:0}} >
+      <AppBar position="static" style={{zIndex:0,backgroundColor:'#181818'}} >
         <Tabs value={value} onChange={handleChange} 
         aria-label="simple tabs example" centered>
           <Tab label="ICS" {...a11yProps(0)} />

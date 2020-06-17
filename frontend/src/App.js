@@ -67,7 +67,9 @@ class App extends Component{
   renderSwitch(param) {
     switch(param) {
       case 'home':
-        return <Route exact link="/home" component={Home}/>;
+        return <Route exact link="/home" >
+          <Home onRouteChange={this.onRouteChange}/>
+        </Route>;
       case 'login':
         return <Route link="/login">
                 <Login onRouteChange={this.onRouteChange} loadUser={this.loadUser} 
@@ -88,11 +90,11 @@ class App extends Component{
               </Route>
       case 'clubs':
         return <Route link="/clubs">
-                <Clubs />
+                <Clubs onRouteChange={this.onRouteChange}/>
               </Route>
       case 'resources':
         return <Route link="/resources">
-                <Resources/>
+                <Resources onRouteChange={this.onRouteChange}/>
               </Route>
       case 'contact':
         return <Route link="/contact">
@@ -113,7 +115,6 @@ class App extends Component{
         loggedIn={this.loggedIn}
         />
         {this.renderSwitch(this.state.route)}
-
         <Footer/>
       </div>
     );

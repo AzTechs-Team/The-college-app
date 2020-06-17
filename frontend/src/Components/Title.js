@@ -6,16 +6,25 @@ import Typography from '@material-ui/core/Typography';
 //declaring styles
 const styles = theme => ({
   root: {
+    "& .MuiPaper-root":{
+      backgroundColor:'#2d2d2d',
+    },
     ...theme.mixins.gutters(),
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    marginTop:75,
-    marginBottom:23,
+    paddingTop: theme.spacing(6),
+    marginTop:40,
+    marginBottom:0,
+    paddingBottom:23,
+    backgroundColor:'#2d2d2d',
+    color:'white',
+    
   },
   title:{
     marginLeft:190,
   [theme.breakpoints.down("xs")]: {
-    marginLeft:0
+    marginLeft:0,
+    "& .Title-root":{
+      backgroundColor:'#2d2d2d'
+    }
   }}
 });
 

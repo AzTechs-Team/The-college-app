@@ -19,13 +19,19 @@ import Link from '@material-ui/core/Link';
 //declaring styles from material ui to be used with the cards
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 310,
+    maxWidth: 330,
     marginBottom:'24px',
-    boxShadow:'1px 1px 3px #17233b'
+    boxShadow:'1px 1px 3px #17233b',
+    backgroundColor: '#4e4e4e',
+    color:'white',
+    
   },
   media: {
     height: 0,
     paddingTop: '45.25%', // 16:9
+  },
+  datetime:{
+      color:'white'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -38,7 +44,9 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor:'#13233c',
+    backgroundColor:'#4e4e4e',
+    width: theme.spacing(6),
+    height: theme.spacing(6),
   },
   link:{
     '&:hover':{
@@ -46,47 +54,61 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   red:{
-    color:"red"
-  }
+    color:"#e84a5f"
+  },
+  btn_1: {
+    backgroundColor: "#e84a5f",
+    marginRight: "10px",
+    borderRadius: "5px",
+    boxShadow: "none",
+    "&:hover": {
+      backgroundColor: "#4e4e4e",
+      color: "#e84a5f",
+      boxShadow: "none",
+    },}
 }));
 
 //declaring and exporting cards. Props declared to make cards dynamic.
 export default function EventCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
+  const [toggled, setToggled] = React.useState(false);
+  
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  const handleToggle = () =>{
+    setToggled(!toggled);
+  }
   return (
     <Card className={classes.root}>
-      <CardHeader
+      <CardHeader className={classes.datetime}
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
+          <Avatar  className={classes.avatar} src={require(`../Images/${props.logo}`)}>
             {props.name}
           </Avatar>
         }
         action={
             <div>
-            <IconButton aria-label="add to favorites">
-            <FavoriteIcon  />
+            <IconButton aria-label="add to favorites" 
+            onClick={handleToggle}>
+            <FavoriteIcon className={toggled?classes.red:null} />
           </IconButton>
           <IconButton aria-label="share">
             <ShareIcon />
           </IconButton></div>
         }
-        title={props.event}
-        subheader={props.dateTime}
-     
+        title={<Typography variant="h6" >{props.event}</Typography>}
+        subheader={<Typography variant="body2" style={{color:'white'}}>
+          {props.dateTime}</Typography>}
       />
       <CardMedia
         className={classes.media}
         image={require(`../Images/${props.pic}`)}
-        title="Paella dish"
       />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+      <CardContent >
+        <Typography variant="body2"  component="p">
           {props.desc}
         </Typography>
       </CardContent>
@@ -96,7 +118,8 @@ export default function EventCard(props) {
         target="_blank" 
         rel="noopener"
         className={classes.link}>
-        <Button size="small" variant="contained" style={{backgroundColor:'#ff6769',color:'white'}}>
+        <Button size="small" variant="contained" 
+        className={classes.btn_1}>
             Register now!
           </Button>
         </Link>
@@ -107,6 +130,7 @@ export default function EventCard(props) {
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
+          style={{color:"white"}}
         >
           <ExpandMoreIcon />
         </IconButton>

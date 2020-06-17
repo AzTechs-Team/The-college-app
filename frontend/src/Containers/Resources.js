@@ -6,9 +6,9 @@ import { Typography } from '@material-ui/core';
 import '../Styles/margin.css'
 
 
-function Club() {
+function Club(props) {
   return (
-    <div>        
+    <div style={{backgroundColor:'#2d2d2d',color:'white'}}>        
       <Title name="Resources"/>
      <div id="about">
       <About 
@@ -17,14 +17,15 @@ function Club() {
       porta ligula placerat. Vivamus molestie nisl diam, vel vestibulum arcu pharetra 
       sollicitudin. Suspendisse scelerisque ante et imperdiet tempor. Quisque vitae
        risus non diam auctor lobortis id eu mauris."
-        btn="Check out Workshops!"/>
+        btn="Check out Workshops!"
+        onRouteChange={props.onRouteChange}/>
         <br/><br/></div>
         <div id="resources">
         <Typography variant="h6" align="center">Check out notes of various subjects along with 
         previous papers to help you study better!!</Typography>
         <br/>
         <ResourceTabs/>
-        <br/><br/><br/>
+        <br/><br/><br/><br/>
         </div>
     </div>
    

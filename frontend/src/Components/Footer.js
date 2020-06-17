@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     height:"40px",
     "&:hover": {
-      backgroundColor: "#2a363b",
+      backgroundColor: "#131313",
       color: "#e84a5f",
       boxShadow: "none",
     },

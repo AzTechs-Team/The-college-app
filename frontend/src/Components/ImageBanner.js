@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) =>({
   },
   large: {
     position:'absolute',
-    top:200,
+    top:210,
     left:'auto',
     width: theme.spacing(25),
     height: theme.spacing(25),
@@ -33,14 +33,14 @@ const useStyles = makeStyles((theme) =>({
   },
   info:{
       margin:"auto 5%",
-      backgroundColor:'#0c0d0e'
+      backgroundColor:'#2d2d2d'
   },
   btn_1: {
     backgroundColor: "#e84a5f",
     borderRadius: "5px",
     boxShadow: "none",
     "&:hover": {
-      backgroundColor: "#0c0d0e",
+      backgroundColor: "#2d2d2d",
       color: "#e84a5f",
       boxShadow: "none",
     },
@@ -63,7 +63,7 @@ export default function ImageBanner(props) {
             <Typography variant="h5" align="center"
             style={{marginTop:17,color:"#8694ad"}}>
                 {username}
-            </Typography>
+            </Typography><br/>
             <Typography variant="body1" align="center" className={classes.info}>
                 lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                 lorem ipsum lorem ipsum lorem ipsum lorem ipsum

@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 //declaring a constant array with images and information about recent cards.
 const images = [
@@ -10,19 +10,19 @@ const images = [
     url: 'carousel-two.jpg',
     title: 'Event1 registrations open',
     width: '30%',
-    link:"/events"
-  },
-  {
-    url: 'carousel-one.jpg',
-    title: 'WT notes added',
-    width: '30%',
-    link:"/resources"
+    link:"events"
   },
   {
     url: 'carousel-three.jpg',
+    title: 'WT notes added',
+    width: '30%',
+    link:"resources"
+  },
+  {
+    url: 'carousel-one.jpg',
     title: 'New club on campus!',
     width: '30%',
-    link:"/clubs"
+    link:"clubs"
   },
 ];
 
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover, &$focusVisible': {
       zIndex: 1,
       '& $imageBackdrop': {
-        opacity: 0.15,
+        opacity: 0.5,
       },
       '& $imageMarked': {
         opacity: 0,
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 //decalring and exporting function 'Recent'
-export default function Recent() {
+export default function Recent(props) {
   const classes = useStyles();
 
   return (
@@ -119,7 +119,10 @@ export default function Recent() {
             width: image.width,
           }}
           component={Link}
-          to={image.link}
+          to={`/${image.link}`}
+          onClick={() => {
+            props.onRouteChange(`${image.link}`);
+          }}
         >
           <span
             className={classes.imageSrc}

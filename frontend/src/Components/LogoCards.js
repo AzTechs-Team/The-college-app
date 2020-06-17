@@ -8,15 +8,15 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 //declaring styles from material ui to be used by card
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) =>({
   root: {
-    maxWidth: 280,
+    maxWidth: 230,
     marginTop:'40px',
     border:0,
     boxShadow:'none',
-    "&:hover": {
-      backgroundColor: "white"
-    }
+    backgroundColor:"#2d2d2d",
+    color:"white",
+  
   },
   media: {
     paddingTop:0,
@@ -30,8 +30,20 @@ const useStyles = makeStyles({
   },
   content_card:{
     textAlign:'center',
+  },
+  btn_1: {
+    backgroundColor: "#e84a5f",
+    marginRight: "10px",
+    borderRadius: "5px",
+    boxShadow: "none",
+    "&:hover": {
+      backgroundColor: "#2d2d2d",
+      color: "#e84a5f",
+      boxShadow: "none",
+    },
+
   }
-});
+}));
 
 //declaring and exporting function cards
 //declaring props to dynamically change data of cards.
@@ -41,25 +53,28 @@ const LogoCard=(props)=> {
   return (
 
     <Card className={classes.root} >
-      <div style={{ display:'flex', justifyContent:'center' }}>
+      <div style={{ display:'flex', justifyContent:'center',alignItems:'center' }}>
         <CardMedia
           className={`${classes.media} ${classes.img}`}
           image={require(`../Images/${props.img}`)}
           title={props.name}
       /></div>
         <CardContent className={classes.content_card}>
-          <Typography variant="h5" component="h2" >
+          <Typography variant="h5" component="h2" style={{color:'#fff'}}>
             {props.name}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p" style={{color:'#253859'}}>
+          <Typography variant="body2" color="textSecondary" component="p" style={{color:'#bfbfbf'}}>
             {props.desc}
-            
           </Typography>
         </CardContent>
      <div style={{ display:'flex', justifyContent:'center' }}>
       <CardActions>
       
-        <Button size="small" variant="contained" style={{backgroundColor:'#ff6769',color:'white'}}>
+        <Button size="small" variant="contained" 
+        className={classes.btn_1}
+        onClick={() => {
+          props.onRouteChange("clubs");
+        }}>
           Join
         </Button>
         
