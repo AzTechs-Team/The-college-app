@@ -189,7 +189,7 @@ function Navbar(props) {
           key="Resources"
           component={Link}
           to="/resources"
-          className={classes.tabs_tabs}
+          className={loginStatus ? classes.tabs_tabs : classes.hide}
           onClick={() => {
             onRouteChange("resources");
           }}

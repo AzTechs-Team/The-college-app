@@ -3,7 +3,6 @@ import MailchimpSubscribe from 'react-mailchimp-subscribe';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import {withStyles} from "@material-ui/core/styles";
-import Link from "@material-ui/core/Link";
 import { Card, Divider } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import {Button} from '@material-ui/core';
@@ -131,9 +130,9 @@ class Footer extends Component{
     return (
       <Typography variant="body2" color="textSecondary" style={{textAlign:'center',marginTop:8,color:'white'}}>
         {"Copyright © "}
-        <Link color="inherit" href="https://material-ui.com/">
+        
           Aztechs
-        </Link>{" "}
+        {" "}
         {new Date().getFullYear()}
         {"."}
       </Typography>
@@ -141,77 +140,80 @@ class Footer extends Component{
   }
 
   render(){
-    const { classes }  = this.props;
+    const { classes,route,loginStatus}  = this.props;
 
     const url =
       "https://gmail.us10.list-manage.com/subscribe/post?u=471004c5f312ad1088d346627&amp;id=ef035ee544";
+
 
   
     return (
       <div className={classes.root} id="footer">
         <CssBaseline />
         <Card  className={classes.a}>
-          
-          <MailchimpSubscribe url={url}
-          render={({ subscribe,status}) => (
-            <div>
-            <div className={classes.newsletter}>
+          {route !== "signup" && route!=='login' && !loginStatus?
+          <div>
+            <MailchimpSubscribe url={url}
+            render={({ subscribe,status}) => (
               <div>
-                  <Typography variant="h6"> Be the first to get updates!</Typography>
-                  <Typography variant="body2">Subscribe and join our newletter today.</Typography>
-                </div>
-              <TextField
-                  id="outlined-basic"
-                  variant="filled"
-                  label="Email"
-                  type="text"
-                  className={` ${classes.email}`}
-                  color="secondary"
-                  value={this.state.email}
-                  onChange={this.handleEmailChange}
-                />
-              <Button variant="contained"  
-               onClick={()=>{
-                let data={EMAIL:this.state.email}
-                subscribe(data)}}
-                className={status==="success"?classes.hide_btn:classes.btn_1}>
-                Subscribe
-              </Button>
-              
-              
-              </div>
-              {status==="success"?
+              <div className={classes.newsletter}>
                 <div>
-                  <Typography variant="body1" className={classes.resp}>
-                    Thank you for subscribing.Check your email 
-                    for latest updates</Typography>
-                  <br/>
+                    <Typography variant="h6"> Be the first to get updates!</Typography>
+                    <Typography variant="body2">Subscribe and join our newletter today.</Typography>
+                  </div>
+                <TextField
+                    id="outlined-basic"
+                    variant="filled"
+                    label="Email"
+                    type="text"
+                    className={` ${classes.email}`}
+                    color="secondary"
+                    value={this.state.email}
+                    onChange={this.handleEmailChange}
+                  />
+                <Button variant="contained"  
+                onClick={()=>{
+                  let data={EMAIL:this.state.email}
+                  subscribe(data)}}
+                  className={status==="success"?classes.hide_btn:classes.btn_1}>
+                  Subscribe
+                </Button>
+                
                 </div>
-              :null}
-              {status==='sending'?
-                <div>
-                  <Typography variant="body2" className={classes.resp}
-                  style={{color:'#bfbfbf'}}>
-                    Subscribing...</Typography>
-                    <br/></div>
+                {status==="success"?
+                  <div>
+                    <Typography variant="body1" className={classes.resp}>
+                      Thank you for subscribing.Check your email 
+                      for latest updates</Typography>
+                    <br/>
+                  </div>
                 :null}
-              {status==="error"?
-                <div>
-                  <Typography variant="body2" className={classes.resp}
-                    style={{color:'#e84a5f'}}>
-                    Something went wrong. Please try again 
-                    or use a different email id.</Typography><br/>
-                </div>
+                {status==='sending'?
+                  <div>
+                    <Typography variant="body2" className={classes.resp}
+                    style={{color:'#bfbfbf'}}>
+                      Subscribing...</Typography>
+                      <br/></div>
+                  :null}
+                {status==="error"?
+                  <div>
+                    <Typography variant="body2" className={classes.resp}
+                      style={{color:'#e84a5f'}}>
+                      Something went wrong. Please try again 
+                      or use a different email id.</Typography><br/>
+                  </div>
               :null}
-              
-              </div>
-              
+             </div>
           )}
           />
-          
-  
-        <Divider variant="middle"
-        style={{backgroundColor:'#4e4e4e'}}/>
+          <Divider variant="middle"
+          style={{backgroundColor:'#4e4e4e'}}/>
+          </div>
+          :
+          null
+          }
+ 
+        
           <div className={classes.info}>
             <div >
               <Typography variant="body1">

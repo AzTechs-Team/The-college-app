@@ -1,4 +1,4 @@
-div#login, #signup,#events{
+div  #signup,#events,#login{
     margin-left: 210px;
 }
 
@@ -7,8 +7,15 @@ div #home, #about,#user,#footer,#clubs,#resources{
 }
 
 @media only screen and (max-width: 600px) {
-    div#home,#login, #signup,#events,#clubs,#resources,#about,#user,#footer{
+    div#home,#events,#clubs,#resources,#about,#user,#footer{
       margin-left: 0;
     }
 
   }
+
+@media only screen and (max-width:600px) {
+  div#login,div#signup{
+    margin-left: 0;
+  }
+
+}

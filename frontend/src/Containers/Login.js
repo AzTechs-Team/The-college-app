@@ -105,11 +105,11 @@ class Login extends React.Component {
               Login
             </Button>
             <br />
-            {this.state.err ? (
+            {/* {this.state.err ? (
               <Typography align="center" style={{ color: "#e84a5f" }}>
                 Email/Password Incorrect. Please try again.
               </Typography>
-            ) : null}
+            ) : null} */}
               <br/><br/><br/>
             <Typography align="center">Don't have an account yet??</Typography>
             <Button color="default" component={Link} to="/signup"

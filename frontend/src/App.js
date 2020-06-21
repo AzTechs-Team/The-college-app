@@ -4,9 +4,9 @@ import Navbar from "./Components/Navbar";
 import Home from './Containers/Home';
 import Footer from './Components/Footer';
 import { Route} from "react-router-dom";
-import Login from "./Containers/login.shreya";
+import Login from "./Containers/Login";
 import UserHome from "./Containers/UserHome";
-import SignUp from "./Containers/Signup.shreya";
+import SignUp from "./Containers/Signup";
 import Events from './Containers/Events';
 import Clubs from './Containers/Clubs';
 import Resources from './Containers/Resources';
@@ -115,7 +115,7 @@ class App extends Component{
         loggedIn={this.loggedIn}
         />
         {this.renderSwitch(this.state.route)}
-        <Footer/>
+        <Footer route={this.state.route} loginStatus={this.state.loginStatus}/>
       </div>
     );
   }
