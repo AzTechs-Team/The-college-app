@@ -59,7 +59,7 @@ export default function TabInfo(props){
             ))}
           </List>
           <br/>
-      <Typography variant="h5">Notes</Typography>
+      <Typography variant="h5">Download notes</Typography>
       <div className={classes.note_img}>
       {props.img.map((i) => (
       <Link to={`/notes/${i[1]}`} target="_blank" download>

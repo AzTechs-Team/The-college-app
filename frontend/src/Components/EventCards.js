@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     boxShadow: "none",
     "&:hover": {
-      backgroundColor: "#4e4e4e",
+      backgroundColor: "#3f3f3f",
       color: "#e84a5f",
       boxShadow: "none",
     },}

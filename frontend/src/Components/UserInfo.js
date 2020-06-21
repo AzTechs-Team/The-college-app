@@ -106,7 +106,7 @@ export default function UserInfo(props) {
             
         </div>
             <Divider orientation="vertical" flexItem={true}
-            style={{backgroundColor:'#131313',width:"2px",marginRight:40}}/>
+            style={{backgroundColor:'#131313',width:"2px",marginRight:40,marginLeft:5}}/>
 
         <div className={classes.club_info}>
             <Typography className={`${classes.title}`}>Clubs joined:</Typography>
