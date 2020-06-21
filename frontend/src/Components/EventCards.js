@@ -24,7 +24,9 @@ const useStyles = makeStyles((theme) => ({
     boxShadow:'1px 1px 3px #17233b',
     backgroundColor: '#4e4e4e',
     color:'white',
-    
+    "&:hover":{
+      backgroundColor:'#3f3f3f',
+    }
   },
   media: {
     height: 0,
@@ -95,9 +97,14 @@ export default function EventCard(props) {
             onClick={handleToggle}>
             <FavoriteIcon className={toggled?classes.red:null} />
           </IconButton>
+          <Link 
+            href="https://www.google.com/forms/about/" 
+            target="_blank" 
+            rel="noopener">
           <IconButton aria-label="share">
             <ShareIcon />
-          </IconButton></div>
+          </IconButton>
+          </Link></div>
         }
         title={<Typography variant="h6" >{props.event}</Typography>}
         subheader={<Typography variant="body2" style={{color:'white'}}>

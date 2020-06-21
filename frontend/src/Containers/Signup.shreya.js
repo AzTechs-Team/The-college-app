@@ -79,7 +79,7 @@ class Signup extends React.Component {
   //Rendering components which will be returened on page
   render() {
     return (
-      <div style={{backgroundColor:"#2d2d2d",color:"white"}}>
+      <div style={{backgroundColor:"#2d2d2d",color:"white",}}>
         <Title name="Signup" />
         <div id="signup"  >
           <Grid container 
@@ -112,7 +112,7 @@ class Signup extends React.Component {
               InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}/>
               <br/>
             <TextField
-              id="filled-username-input"
+              id="filled-phone-input"
               label="Phone"
               type="text"
               variant="filled"
@@ -122,7 +122,7 @@ class Signup extends React.Component {
               InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
             /><br/>
             <TextField
-              id="filled-username-input"
+              id="filled-department-input"
               label="Department"
               type="text"
               variant="filled"
