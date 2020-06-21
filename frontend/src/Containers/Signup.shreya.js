@@ -4,15 +4,29 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Title from "../Components/Title";
+<<<<<<< HEAD
+import "../Styles/margin.css";
+=======
 import '../Styles/margin.css'
 import { FormGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
 //declaring signup class using React Component
+>>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
 
 
 class Signup extends React.Component {
   //declaring state of class to help extract data from user input
+<<<<<<< HEAD
+  state = {
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    phone: "",
+    department: "",
+  };
+=======
   constructor(props){
     super(props);
     this.state = {
@@ -24,6 +38,7 @@ class Signup extends React.Component {
       department:""
     };
   }
+>>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
 
   //declaring function to change state based on user input
   handleNameChange = (e) =>
@@ -54,26 +69,26 @@ class Signup extends React.Component {
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
-    fetch('http://localhost:3001/signup',{
-            method:'post',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({
-                email:this.state.email,
-                password:this.state.password,
-                name:this.state.name,
-                username:this.state.username,
-                department:this.state.department,
-                phone:this.state.phone
-            })
-        })
-        .then(res=>res.json())
-        .then(user=>{
-            if(user){
-                this.props.loadUser(user)
-                this.props.onRouteChange('user')
-                this.props.loggedIn(true)
-            }
-        })
+    fetch(`url/signup`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name,
+        username: this.state.username,
+        department: this.state.department,
+        phone: this.state.phone,
+      }),
+    })
+      .then((res) => res.json())
+      .then((user) => {
+        if (user) {
+          this.props.loadUser(user);
+          this.props.onRouteChange("user");
+          this.props.loggedIn(true);
+        }
+      });
   };
 
   //Rendering components which will be returened on page
@@ -108,9 +123,14 @@ class Signup extends React.Component {
               variant="filled"
               value={this.state.username}
               onChange={this.handleUserChange}
+<<<<<<< HEAD
+            />
+            <br />
+=======
               color="secondary"
               InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}/>
               <br/>
+>>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
             <TextField
               id="filled-phone-input"
               label="Phone"
@@ -118,9 +138,14 @@ class Signup extends React.Component {
               variant="filled"
               value={this.state.phone}
               onChange={this.handlePhoneChange}
+<<<<<<< HEAD
+            />
+            <br />
+=======
               color="secondary"
               InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
             /><br/>
+>>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
             <TextField
               id="filled-department-input"
               label="Department"
@@ -157,11 +182,20 @@ class Signup extends React.Component {
             />
             <br />
             <br />
+<<<<<<< HEAD
+            <Button
+              variant="contained"
+              onClick={this.handleData}
+              component={Link}
+              to={`/user`}
+            >
+=======
             <Button variant="contained" onClick={this.handleData}
             component={Link} 
             to={`/user`}
             style={{width:180,alignSelf:'center'
             ,backgroundColor:"#e84a5f",color:"#131313",}}>
+>>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
               Signup
             </Button>
             <br/><br/>
@@ -176,8 +210,12 @@ class Signup extends React.Component {
             }}> 
               Login Now
             </Button>
+<<<<<<< HEAD
+          </form>
+=======
             </FormGroup>
         </form></Grid></Grid>
+>>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
         </div>
         <br/><br/><br/><br/><br/>
       </div>
