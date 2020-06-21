@@ -4,41 +4,25 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Title from "../Components/Title";
-<<<<<<< HEAD
 import "../Styles/margin.css";
-=======
-import '../Styles/margin.css'
 import { FormGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
 //declaring signup class using React Component
->>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
-
 
 class Signup extends React.Component {
   //declaring state of class to help extract data from user input
-<<<<<<< HEAD
-  state = {
-    name: "",
-    username: "",
-    email: "",
-    password: "",
-    phone: "",
-    department: "",
-  };
-=======
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       name: "",
       username: "",
       email: "",
       password: "",
-      phone:"",
-      department:""
+      phone: "",
+      department: "",
     };
   }
->>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
 
   //declaring function to change state based on user input
   handleNameChange = (e) =>
@@ -69,7 +53,7 @@ class Signup extends React.Component {
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
-    fetch(`url/signup`, {
+    fetch(`http://test-express-app-2801.herokuapp.com/signup`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -94,132 +78,140 @@ class Signup extends React.Component {
   //Rendering components which will be returened on page
   render() {
     return (
-      <div style={{backgroundColor:"#2d2d2d",color:"white"}}>
+      <div style={{ backgroundColor: "#2d2d2d", color: "white" }}>
         <Title name="Signup" />
-        <div id="signup"  >
-          <Grid container 
-          style={{ display: "flex", justifyContent: "center"}}>
+        <div id="signup">
+          <Grid container style={{ display: "flex", justifyContent: "center" }}>
             <Grid item md={5} xs={10}>
-          <form noValidate autoComplete="off" >
-            <FormGroup >
-            <TextField
-              id="filled-name-input"
-              label="Full name"
-              type="text"
-              variant="filled"
-              value={this.state.name}
-              onChange={this.handleNameChange}
-              required
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7
-              }}}
-              
-            />
-            <br />
-            <TextField
-              id="filled-username-input"
-              label="Username"
-              type="text"
-              variant="filled"
-              value={this.state.username}
-              onChange={this.handleUserChange}
-<<<<<<< HEAD
-            />
-            <br />
-=======
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}/>
-              <br/>
->>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
-            <TextField
-              id="filled-username-input"
-              label="Phone"
-              type="text"
-              variant="filled"
-              value={this.state.phone}
-              onChange={this.handlePhoneChange}
-<<<<<<< HEAD
-            />
-            <br />
-=======
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
-            /><br/>
->>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
-            <TextField
-              id="filled-username-input"
-              label="Department"
-              type="text"
-              variant="filled"
-              value={this.state.department}
-              onChange={this.handleDepartmentChange}
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
-            />
-            <br />
-            <TextField
-              id="filled-email-input"
-              label="Email"
-              type="email"
-              variant="filled"
-              value={this.state.email}
-              onChange={this.handleEmailChange}
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
-              required
-            />
-            <br />
-            <TextField
-              id="filled-password-input"
-              label="Password"
-              type="password"
-              variant="filled"
-              value={this.state.password}
-              onChange={this.handlePwdChange}
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
-              required
-            />
-            <br />
-            <br />
-<<<<<<< HEAD
-            <Button
-              variant="contained"
-              onClick={this.handleData}
-              component={Link}
-              to={`/user`}
-            >
-=======
-            <Button variant="contained" onClick={this.handleData}
-            component={Link} 
-            to={`/user`}
-            style={{width:180,alignSelf:'center'
-            ,backgroundColor:"#e84a5f",color:"#131313",}}>
->>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
-              Signup
-            </Button>
-            <br/><br/>
-            <Typography align='center'>Already have an account??</Typography>
-            <Button  
-            component={Link} 
-            to="/login" 
-            style={{width:150,alignSelf:'center',
-          backgroundColor:"#bfbfbf",color:"#000"}}
-            onClick={() => {
-              this.props.onRouteChange("login");
-            }}> 
-              Login Now
-            </Button>
-<<<<<<< HEAD
-          </form>
-=======
-            </FormGroup>
-        </form></Grid></Grid>
->>>>>>> c3a12304aa4c956021a47f540a78a8715fd05402
+              <form noValidate autoComplete="off">
+                <FormGroup>
+                  <TextField
+                    id="filled-name-input"
+                    label="Full name"
+                    type="text"
+                    variant="filled"
+                    value={this.state.name}
+                    onChange={this.handleNameChange}
+                    required
+                    color="secondary"
+                    InputProps={{
+                      style: { backgroundColor: "#bfbfbf", borderRadius: 7 },
+                    }}
+                  />
+                  <br />
+                  <TextField
+                    id="filled-username-input"
+                    label="Username"
+                    type="text"
+                    variant="filled"
+                    value={this.state.username}
+                    onChange={this.handleUserChange}
+                    color="secondary"
+                    InputProps={{
+                      style: { backgroundColor: "#bfbfbf", borderRadius: 7 },
+                    }}
+                  />
+                  <br />
+                  <TextField
+                    id="filled-username-input"
+                    label="Phone"
+                    type="text"
+                    variant="filled"
+                    value={this.state.phone}
+                    onChange={this.handlePhoneChange}
+                    color="secondary"
+                    InputProps={{
+                      style: { backgroundColor: "#bfbfbf", borderRadius: 7 },
+                    }}
+                  />
+                  <br />
+                  <TextField
+                    id="filled-username-input"
+                    label="Department"
+                    type="text"
+                    variant="filled"
+                    value={this.state.department}
+                    onChange={this.handleDepartmentChange}
+                    color="secondary"
+                    InputProps={{
+                      style: { backgroundColor: "#bfbfbf", borderRadius: 7 },
+                    }}
+                  />
+                  <br />
+                  <TextField
+                    id="filled-email-input"
+                    label="Email"
+                    type="email"
+                    variant="filled"
+                    value={this.state.email}
+                    onChange={this.handleEmailChange}
+                    color="secondary"
+                    InputProps={{
+                      style: { backgroundColor: "#bfbfbf", borderRadius: 7 },
+                    }}
+                    required
+                  />
+                  <br />
+                  <TextField
+                    id="filled-password-input"
+                    label="Password"
+                    type="password"
+                    variant="filled"
+                    value={this.state.password}
+                    onChange={this.handlePwdChange}
+                    color="secondary"
+                    InputProps={{
+                      style: { backgroundColor: "#bfbfbf", borderRadius: 7 },
+                    }}
+                    required
+                  />
+                  <br />
+                  <br />
+                  <Button
+                    variant="contained"
+                    onClick={this.handleData}
+                    component={Link}
+                    to={`/user`}
+                    style={{
+                      width: 180,
+                      alignSelf: "center",
+                      backgroundColor: "#e84a5f",
+                      color: "#131313",
+                    }}
+                  >
+                    Signup
+                  </Button>
+                  <br />
+                  <br />
+                  <Typography align="center">
+                    Already have an account??
+                  </Typography>
+                  <Button
+                    component={Link}
+                    to="/login"
+                    style={{
+                      width: 150,
+                      alignSelf: "center",
+                      backgroundColor: "#bfbfbf",
+                      color: "#000",
+                    }}
+                    onClick={() => {
+                      this.props.onRouteChange("login");
+                    }}
+                  >
+                    Login Now
+                  </Button>
+                </FormGroup>
+              </form>
+            </Grid>
+          </Grid>
         </div>
-        <br/><br/><br/><br/><br/>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
-      
     );
   }
 }
