@@ -35,7 +35,7 @@ class Login extends React.Component {
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
-    fetch("http://localhost:3001/login", {
+    fetch("https://test-express-app-2801.herokuapp.com/login", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

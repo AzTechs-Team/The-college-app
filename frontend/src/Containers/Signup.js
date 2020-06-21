@@ -7,6 +7,11 @@ import Title from "../Components/Title";
 import '../Styles/margin.css'
 import { FormGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import FormControl from '@material-ui/core/FormControl';
 
 //declaring signup class using React Component
 
@@ -46,16 +51,17 @@ class Signup extends React.Component {
     this.setState({
       phone: e.target.value,
     });
+
   handleDepartmentChange = (e) =>
     this.setState({
       department: e.target.value,
-    });
+    })
 
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
     if(this.state.email || this.state.password || this.state.name){
-      fetch(`url/signup`, {
+      fetch(`https://test-express-app-2801.herokuapp.com/signup`, {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -124,16 +130,27 @@ class Signup extends React.Component {
               color="secondary"
               InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
             /><br/>
-            <TextField
-              id="filled-department-input"
-              label="Department"
-              type="text"
-              variant="filled"
-              value={this.state.department}
-              onChange={this.handleDepartmentChange}
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
-            />
+            <FormControl variant="filled" style={{backgroundColor:'#bfbfbf',borderRadius:7}} >
+            <InputLabel id="demo-simple-select-filled-label" color="secondary">
+              Department</InputLabel>
+              <Select labelId="demo-simple-select-filled-label"  id="demo-simple-select-filled"
+               onChange={this.handleDepartmentChange} color="secondary"
+              >
+                
+                <ListSubheader>B.Tech</ListSubheader>
+                <MenuItem value={"B.Tech CSE"}>CSE</MenuItem>
+                <MenuItem value={"B.Tech IT"}>IT</MenuItem>
+                <MenuItem value={"B.Tech Mech"}>Mech</MenuItem>
+                <MenuItem value={"B.Tech CE"}>CE</MenuItem>
+                <MenuItem value={"B.Tech EE"}>EE</MenuItem>
+                <ListSubheader>BBA</ListSubheader>
+                <MenuItem value={"BBA"}>BBA</MenuItem>
+                <MenuItem value={"BBA LLB"}>BBA LLB</MenuItem>
+                <ListSubheader>B.Sc</ListSubheader>
+                <MenuItem value={"B.Sc Phy"}>Phyics</MenuItem>
+                <MenuItem value={"B.Sc Chem"}>Chemistry</MenuItem>
+                <MenuItem value={"B.Sc Math"}>Maths</MenuItem>
+            </Select></FormControl>
             <br />
             <TextField
               id="filled-email-input"
