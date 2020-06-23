@@ -109,6 +109,9 @@ const useStyles = makeStyles((theme) => ({
   },
   tabs_tabs: {
     color: "white",
+    "&:hover":{
+      backgroundColor:'#4e4e4e',
+    }
   },
 }));
 
