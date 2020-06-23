@@ -1,8 +1,8 @@
-div  #signup,#events,#login{
+div  #signup,#login{
     margin-left: 210px;
 }
 
-div #home, #about,#user,#footer,#clubs,#resources{
+div #home, #events,#about,#user,#footer,#clubs,#resources{
   margin-left: 190px;
 }
 

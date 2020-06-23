@@ -64,6 +64,7 @@ function Home(props) {
           sollicitudin."
           btn="Checkout Events now!"
           onRouteChange={props.onRouteChange}
+          location="events"
         />
         <br />
 

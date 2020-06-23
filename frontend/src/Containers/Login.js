@@ -35,7 +35,7 @@ class Login extends React.Component {
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
-    fetch("https://test-express-app-2801.herokuapp.com/login", {
+    fetch("http://localhost:3001/login", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -50,10 +50,14 @@ class Login extends React.Component {
           this.props.loadUser(user);
           this.props.loggedIn(true);
         }
+        else{
+          console.log("oops");
+          this.setState({ err: true });
+        }
       })
       .catch((err) => {
         this.setState({ err: true });
-        console.log("idar tak aaya mai");
+        console.log(err);
       });
   };
 
@@ -77,10 +81,10 @@ class Login extends React.Component {
               value={this.state.email}
               onChange={this.handleEmailChange}
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}
               required
             />
-            <br />
+            
             <TextField
               id="filled-password-input"
               label="Password"
@@ -90,27 +94,27 @@ class Login extends React.Component {
               autoComplete="current-password"
               variant="filled"
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}
               required
             />
-            <br />
+            
             <Button
               variant="contained"
               onClick={this.handleData}
               style={{width:180,alignSelf:'center'
-            ,backgroundColor:"#e84a5f",color:"#131313",}}
+            ,backgroundColor:"#e84a5f",color:"#131313",marginBottom:20}}
               component={Link}
               to={`/user`}
             >
               Login
             </Button>
-            <br />
-            {/* {this.state.err ? (
-              <Typography align="center" style={{ color: "#e84a5f" }}>
+            
+            {this.state.err ? (
+              <Typography align="center" style={{ color: "#e84a5f",marginBottom:30 }}>
                 Email/Password Incorrect. Please try again.
               </Typography>
-            ) : null} */}
-              <br/><br/><br/>
+            ) : null}
+              
             <Typography align="center">Don't have an account yet??</Typography>
             <Button color="default" component={Link} to="/signup"
             style={{width:150,alignSelf:'center',

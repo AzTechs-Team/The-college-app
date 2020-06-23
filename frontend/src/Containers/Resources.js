@@ -18,7 +18,8 @@ function Club(props) {
       sollicitudin. Suspendisse scelerisque ante et imperdiet tempor. Quisque vitae
        risus non diam auctor lobortis id eu mauris."
         btn="Check out Workshops!"
-        onRouteChange={props.onRouteChange}/>
+        onRouteChange={props.onRouteChange}
+        location="events"/>
         <br/><br/></div>
         <div id="resources">
         <Typography variant="h6" align="center">Check out notes of various subjects along with 

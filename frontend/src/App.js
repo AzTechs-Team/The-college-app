@@ -86,7 +86,7 @@ class App extends Component{
               </Route>
       case 'events':
         return <Route link="/events">
-                <Events/>
+                <Events onRouteChange={this.onRouteChange}/>
               </Route>
       case 'clubs':
         return <Route link="/clubs">
@@ -115,6 +115,9 @@ class App extends Component{
         loggedIn={this.loggedIn}
         />
         {this.renderSwitch(this.state.route)}
+        {/* <Route link="/events">
+                <Events/>
+              </Route> */}
         <Footer route={this.state.route} loginStatus={this.state.loginStatus}/>
       </div>
     );

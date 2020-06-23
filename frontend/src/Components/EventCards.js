@@ -19,7 +19,6 @@ import Link from '@material-ui/core/Link';
 //declaring styles from material ui to be used with the cards
 const useStyles = makeStyles((theme) => ({
   root: {
-
     maxWidth: 330,
     marginBottom:'24px',
     boxShadow:'2px 2px 6px #181818',
