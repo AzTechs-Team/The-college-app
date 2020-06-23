@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 330,
     marginBottom:'24px',
-    boxShadow:'1px 1px 3px #17233b',
+    boxShadow:'2px 2px 6px #181818',
     backgroundColor: '#4e4e4e',
     color:'white',
     "&:hover":{
@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '45.25%', // 16:9
   },
   datetime:{
+
       color:'white'
   },
   expand: {
@@ -124,7 +125,7 @@ export default function EventCard(props) {
         href="https://www.google.com/forms/about/" 
         target="_blank" 
         rel="noopener"
-        className={classes.link}>
+        className={classes.link}>&nbsp;&nbsp;
         <Button size="small" variant="contained" 
         className={classes.btn_1}>
             Register now!

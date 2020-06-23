@@ -7,6 +7,11 @@ import Title from "../Components/Title";
 import '../Styles/margin.css'
 import { FormGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import FormControl from '@material-ui/core/FormControl';
 
 //declaring signup class using React Component
 
@@ -46,16 +51,17 @@ class Signup extends React.Component {
     this.setState({
       phone: e.target.value,
     });
+
   handleDepartmentChange = (e) =>
     this.setState({
       department: e.target.value,
-    });
+    })
 
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
     if(this.state.email || this.state.password || this.state.name){
-      fetch(`url/signup`, {
+      fetch(`https://test-express-app-2801.herokuapp.com/signup`, {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -98,11 +104,11 @@ class Signup extends React.Component {
               onChange={this.handleNameChange}
               required
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15
               }}}
               
             />
-            <br />
+            
             <TextField
               id="filled-username-input"
               label="Username"
@@ -111,8 +117,8 @@ class Signup extends React.Component {
               value={this.state.username}
               onChange={this.handleUserChange}
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}/>
-              <br/>
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}/>
+              
             <TextField
               id="filled-phone-input"
               label="Phone"
@@ -121,19 +127,30 @@ class Signup extends React.Component {
               value={this.state.phone}
               onChange={this.handlePhoneChange}
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
-            /><br/>
-            <TextField
-              id="filled-department-input"
-              label="Department"
-              type="text"
-              variant="filled"
-              value={this.state.department}
-              onChange={this.handleDepartmentChange}
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}
             />
-            <br />
+            <FormControl variant="filled" style={{backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}} >
+            <InputLabel id="demo-simple-select-filled-label" color="secondary">
+              Department</InputLabel>
+              <Select labelId="demo-simple-select-filled-label"  id="demo-simple-select-filled"
+               onChange={this.handleDepartmentChange} color="secondary"
+              >
+                
+                <ListSubheader>B.Tech</ListSubheader>
+                <MenuItem value={"B.Tech CSE"}>B.Tech CSE</MenuItem>
+                <MenuItem value={"B.Tech IT"}>B.Tech IT</MenuItem>
+                <MenuItem value={"B.Tech Mech"}>B.Tech Mech</MenuItem>
+                <MenuItem value={"B.Tech CE"}>B.Tech CE</MenuItem>
+                <MenuItem value={"B.Tech EE"}>B.Tech EE</MenuItem>
+                <ListSubheader>BBA</ListSubheader>
+                <MenuItem value={"BBA"}>BBA</MenuItem>
+                <MenuItem value={"BBA LLB"}>BBA LLB</MenuItem>
+                <ListSubheader>B.Sc</ListSubheader>
+                <MenuItem value={"B.Sc Phy"}>B.Sc Phyics</MenuItem>
+                <MenuItem value={"B.Sc Chem"}>B.Sc Chemistry</MenuItem>
+                <MenuItem value={"B.Sc Math"}>B.Sc Maths</MenuItem>
+            </Select></FormControl>
+            
             <TextField
               id="filled-email-input"
               label="Email"
@@ -142,10 +159,10 @@ class Signup extends React.Component {
               value={this.state.email}
               onChange={this.handleEmailChange}
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}
               required
             />
-            <br />
+            
             <TextField
               id="filled-password-input"
               label="Password"
@@ -154,19 +171,18 @@ class Signup extends React.Component {
               value={this.state.password}
               onChange={this.handlePwdChange}
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}
               required
             />
-            <br />
-            <br />
+            
             <Button variant="contained" onClick={this.handleData}
             component={Link} 
             to={`/user`}
             style={{width:180,alignSelf:'center'
-            ,backgroundColor:"#e84a5f",color:"#131313",}}>
+            ,backgroundColor:"#e84a5f",color:"#131313",marginBottom:35}}>
               Signup
             </Button>
-            <br/><br/>
+            
             <Typography align='center'>Already have an account??</Typography>
             <Button  
             component={Link} 

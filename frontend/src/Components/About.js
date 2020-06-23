@@ -44,7 +44,7 @@ export default function About(props) {
       <Button  variant="contained" 
         className={classes.btn_1}
       onClick={() => {
-        props.onRouteChange("events");
+        props.onRouteChange(`${props.location}`);
       }}>
           {props.btn}
         </Button>
