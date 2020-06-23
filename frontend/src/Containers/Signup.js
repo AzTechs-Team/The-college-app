@@ -105,11 +105,11 @@ class Signup extends React.Component {
               onChange={this.handleNameChange}
               required
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15
               }}}
               
             />
-            <br />
+            
             <TextField
               id="filled-username-input"
               label="Username"
@@ -118,8 +118,8 @@ class Signup extends React.Component {
               value={this.state.username}
               onChange={this.handleUserChange}
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}/>
-              <br/>
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}/>
+              
             <TextField
               id="filled-phone-input"
               label="Phone"
@@ -128,9 +128,9 @@ class Signup extends React.Component {
               value={this.state.phone}
               onChange={this.handlePhoneChange}
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
-            /><br/>
-            <FormControl variant="filled" style={{backgroundColor:'#bfbfbf',borderRadius:7}} >
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}
+            />
+            <FormControl variant="filled" style={{backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}} >
             <InputLabel id="demo-simple-select-filled-label" color="secondary">
               Department</InputLabel>
               <Select labelId="demo-simple-select-filled-label"  id="demo-simple-select-filled"
@@ -138,20 +138,20 @@ class Signup extends React.Component {
               >
                 
                 <ListSubheader>B.Tech</ListSubheader>
-                <MenuItem value={"B.Tech CSE"}>CSE</MenuItem>
-                <MenuItem value={"B.Tech IT"}>IT</MenuItem>
-                <MenuItem value={"B.Tech Mech"}>Mech</MenuItem>
-                <MenuItem value={"B.Tech CE"}>CE</MenuItem>
-                <MenuItem value={"B.Tech EE"}>EE</MenuItem>
+                <MenuItem value={"B.Tech CSE"}>B.Tech CSE</MenuItem>
+                <MenuItem value={"B.Tech IT"}>B.Tech IT</MenuItem>
+                <MenuItem value={"B.Tech Mech"}>B.Tech Mech</MenuItem>
+                <MenuItem value={"B.Tech CE"}>B.Tech CE</MenuItem>
+                <MenuItem value={"B.Tech EE"}>B.Tech EE</MenuItem>
                 <ListSubheader>BBA</ListSubheader>
                 <MenuItem value={"BBA"}>BBA</MenuItem>
                 <MenuItem value={"BBA LLB"}>BBA LLB</MenuItem>
                 <ListSubheader>B.Sc</ListSubheader>
-                <MenuItem value={"B.Sc Phy"}>Phyics</MenuItem>
-                <MenuItem value={"B.Sc Chem"}>Chemistry</MenuItem>
-                <MenuItem value={"B.Sc Math"}>Maths</MenuItem>
+                <MenuItem value={"B.Sc Phy"}>B.Sc Phyics</MenuItem>
+                <MenuItem value={"B.Sc Chem"}>B.Sc Chemistry</MenuItem>
+                <MenuItem value={"B.Sc Math"}>B.Sc Maths</MenuItem>
             </Select></FormControl>
-            <br />
+            
             <TextField
               id="filled-email-input"
               label="Email"
@@ -160,10 +160,10 @@ class Signup extends React.Component {
               value={this.state.email}
               onChange={this.handleEmailChange}
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}
               required
             />
-            <br />
+            
             <TextField
               id="filled-password-input"
               label="Password"
@@ -172,19 +172,18 @@ class Signup extends React.Component {
               value={this.state.password}
               onChange={this.handlePwdChange}
               color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7}}}
+              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}
               required
             />
-            <br />
-            <br />
+            
             <Button variant="contained" onClick={this.handleData}
             component={Link} 
             to={`/user`}
             style={{width:180,alignSelf:'center'
-            ,backgroundColor:"#e84a5f",color:"#131313",}}>
+            ,backgroundColor:"#e84a5f",color:"#131313",marginBottom:35}}>
               Signup
             </Button>
-            <br/><br/>
+            
             <Typography align='center'>Already have an account??</Typography>
             <Button  
             component={Link} 
