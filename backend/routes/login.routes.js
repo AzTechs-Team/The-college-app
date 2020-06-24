@@ -9,6 +9,11 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   const { email, password } = req.body;
   const dbUser = User.findOne({ email })
     .then((user) => {
