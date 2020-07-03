@@ -25,8 +25,8 @@ class Signup extends React.Component {
       username: "",
       email: "",
       password: "",
-      phone:"",
-      department:""
+      phone: "",
+      department: "",
     };
   }
 
@@ -90,9 +90,8 @@ class Signup extends React.Component {
     return (
       <div style={{backgroundColor:"#2d2d2d",color:"white",}}>
         <Title name="Signup" />
-        <div id="signup"  >
-          <Grid container 
-          style={{ display: "flex", justifyContent: "center"}}>
+        <div id="signup">
+          <Grid container style={{ display: "flex", justifyContent: "center" }}>
             <Grid item md={5} xs={10}>
           <form noValidate autoComplete="off" >
             <FormGroup >
@@ -198,9 +197,12 @@ class Signup extends React.Component {
             </FormGroup>
         </form></Grid></Grid>
         </div>
-        <br/><br/><br/><br/><br/>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
-      
     );
   }
 }
