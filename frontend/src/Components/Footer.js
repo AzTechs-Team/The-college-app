@@ -140,7 +140,7 @@ class Footer extends Component{
   }
 
   render(){
-    const { classes,route,loginStatus}  = this.props;
+    const { classes,route}  = this.props;
 
     const url =
       "https://gmail.us10.list-manage.com/subscribe/post?u=471004c5f312ad1088d346627&amp;id=ef035ee544";
@@ -151,7 +151,7 @@ class Footer extends Component{
       <div className={classes.root} id="footer">
         <CssBaseline />
         <Card  className={classes.a}>
-          {route !== "signup" && route!=='login' && !loginStatus?
+          {route !== "signup" && route!=='login' ?
           <div>
             <MailchimpSubscribe url={url}
             render={({ subscribe,status}) => (

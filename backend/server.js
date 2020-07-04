@@ -36,7 +36,7 @@ const userRoute = require("./routes/user.routes");
 
 app.post("/login", loginRoute);
 app.post("/signup", signupRoute);
-app.get("/user", userRoute);
+app.post("/user", userRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);

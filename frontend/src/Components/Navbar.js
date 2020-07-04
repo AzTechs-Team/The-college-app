@@ -293,7 +293,10 @@ function Navbar(props) {
                 to="/home"
                 onClick={() => {
                   onRouteChange("home");
-                  loggedIn(false);
+                  localStorage.setItem('login',JSON.stringify({
+                    loginStatus:false
+                  }))
+                  loggedIn();
                 }}
               >
                 Sign out

@@ -35,7 +35,7 @@ class Login extends React.Component {
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
-    fetch(`https://test-express-app-2801.herokuapp.com/login`, {
+    fetch("http://localhost:3001/login", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -44,19 +44,18 @@ class Login extends React.Component {
       }),
     })
       .then((res) => res.json())
-      .then((user) => {
-        if (user._id) {
+      .then((token) => {
+        if(token){
           this.props.onRouteChange("user");
-          this.props.loadUser(user);
-          this.props.loggedIn(true);
+          this.props.loadToken(token);
         }
         else{
-          this.setState({ err: true });
-          console.log("hellooo")
+          console.log("ye chal raha hai kya????")
+          this.setState({err:true})
         }
+        
       })
       .catch((err) => {
-        this.setState({ err: true });
         console.log(err);
       });
   };

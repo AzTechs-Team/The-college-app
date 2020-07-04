@@ -26,37 +26,57 @@ class App extends Component{
         email:'',
         username:'',
         phone:'',
-        department:''
+        department:'',
       }
     }
   }
 
-  loadUser = (data) =>{
-    this.setState({
-      user:{
-        id:data._id,
-        username:data.username,
-        name:data.name,
-        email:data.email,
-        phone:data.phone,
-        department:data.department
-      }
-    })
+  componentDidMount=()=>{
+    this.loggedIn()
   }
 
-  loggedIn=(status)=>{
-    this.setState({loginStatus:status})
-    if(!this.state.loginStatus){
-      this.setState({
-        user:{
-          id:'',
-          username:'',
-          name:'',
-          email:'',
-          phone:'',
-          department:''
-        }
+  loadToken=(data)=>{
+    localStorage.setItem('login',JSON.stringify({
+      token:data.token,
+      loginStatus:true
+    }))
+    this.loadUser()
+  }
+
+  loadUser = () =>{
+    fetch("http://localhost:3001/user", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          token:JSON.parse(localStorage.getItem('login')).token,
+        }),
       })
+        .then((res) => res.json())
+        .then((user) => {
+          let login=JSON.parse(localStorage.getItem('login')).loginStatus;
+          this.setState({
+            loginStatus:login,
+            user:{
+              name:user.name,
+              email:user.email,
+              username:user.username,
+              phone:user.phone,
+              department:user.department,
+            }
+          })
+        });
+  }
+
+  loggedIn=()=>{
+    let login=JSON.parse(localStorage.getItem('login')).loginStatus;
+    if(login){
+      this.loadUser()
+    }
+    else{
+      localStorage.setItem('login',JSON.stringify({
+        token:null,
+        loginStatus:false
+      }))
     }
   }
 
@@ -72,13 +92,15 @@ class App extends Component{
         </Route>;
       case 'login':
         return <Route link="/login">
-                <Login onRouteChange={this.onRouteChange} loadUser={this.loadUser} 
-                loggedIn={this.loggedIn} loginStatus={this.state.loginStatus}/>
+                <Login onRouteChange={this.onRouteChange} 
+                loadToken={this.loadToken}
+                loggedIn={this.loggedIn}
+                 />
               </Route>
       case 'signup':
         return <Route link="/signup">
                 <SignUp onRouteChange={this.onRouteChange} 
-                loadUser={this.loadUser} loggedIn={this.loggedIn}/>
+                loadToken={this.loadToken}/>
               </Route>
       case 'user':
         return <Route link='/user'>
@@ -111,14 +133,11 @@ class App extends Component{
       <div>
         <Navbar 
         onRouteChange={this.onRouteChange} 
-        loginStatus={this.state.loginStatus} 
+        loginStatus={JSON.parse(localStorage.getItem('login')).loginStatus} 
         loggedIn={this.loggedIn}
         />
         {this.renderSwitch(this.state.route)}
-        {/* <Route link="/events">
-                <Events/>
-              </Route> */}
-        <Footer route={this.state.route} loginStatus={this.state.loginStatus}/>
+        <Footer route={this.state.route}/>
       </div>
     );
   }

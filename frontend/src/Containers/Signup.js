@@ -27,6 +27,7 @@ class Signup extends React.Component {
       password: "",
       phone: "",
       department: "",
+      token:''
     };
   }
 
@@ -61,7 +62,7 @@ class Signup extends React.Component {
   //Data is converted to a JSON object
   handleData = () => {
     if(this.state.email || this.state.password || this.state.name){
-      fetch(`https://test-express-app-2801.herokuapp.com/signup`, {
+      fetch("http://localhost:3001/signup", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -74,11 +75,11 @@ class Signup extends React.Component {
         }),
       })
         .then((res) => res.json())
-        .then((user) => {
-          if (user) {
-            this.props.loadUser(user);
+        .then((token) => {
+          if (token) {
+            this.props.loadToken(token);
             this.props.onRouteChange("user");
-            this.props.loggedIn(true);
+            // this.props.loggedIn(true);
           }
         });
     }

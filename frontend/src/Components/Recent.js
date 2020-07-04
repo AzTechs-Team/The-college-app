@@ -8,15 +8,15 @@ import {Link} from 'react-router-dom';
 const images = [
   {
     url: 'carousel-two.jpg',
-    title: 'Event1 registrations open',
+    title: 'Event1 registrations open!',
     width: '30%',
     link:"events"
   },
   {
     url: 'carousel-three.jpg',
-    title: 'WT notes added',
+    title: 'Event2 winners announced!',
     width: '30%',
-    link:"resources"
+    link:"events"
   },
   {
     url: 'carousel-one.jpg',
