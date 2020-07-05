@@ -3,7 +3,7 @@ import "./App.css";
 import Navbar from "./Components/Navbar";
 import Home from "./Containers/Home";
 import Footer from "./Components/Footer";
-import { Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./Containers/Login";
 import UserHome from "./Containers/UserHome";
 import SignUp from "./Containers/Signup";
@@ -30,7 +30,17 @@ class App extends Component {
     };
   }
 
-  componentDidMount = () => {
+  UNSAFE_componentWillMount=()=>{
+    if(localStorage.length===0){
+    localStorage.setItem('login',JSON.stringify({
+      token:null,
+      loginStatus:false
+    }))
+    }
+    this.loggedIn();
+  }
+
+  componentDidUpdate = () => {
     this.loggedIn();
   };
 
@@ -48,7 +58,7 @@ class App extends Component {
   loadUser = () => {
     fetch("http://localhost:3001/user", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers:{"Content-Type": "application/json"},
       body: JSON.stringify({
         token: JSON.parse(localStorage.getItem("login")).token,
       }),
@@ -66,7 +76,8 @@ class App extends Component {
             department: user.department,
           },
         });
-      });
+      })
+      .catch(err => console.log("fuck this shit. imma go cry now."))
   };
 
   loggedIn = () => {
@@ -84,83 +95,47 @@ class App extends Component {
     }
   };
 
-  onRouteChange = (route) => {
-    this.setState({ route: route });
-  };
-
-  renderSwitch(param) {
-    switch (param) {
-      case "home":
-        return (
-          <Route exact link="/home">
-            <Home onRouteChange={this.onRouteChange} />
-          </Route>
-        );
-      case "login":
-        return (
-          <Route link="/login">
-            <Login
-              onRouteChange={this.onRouteChange}
-              loadToken={this.loadToken}
-              loggedIn={this.loggedIn}
-            />
-          </Route>
-        );
-      case "signup":
-        return (
-          <Route link="/signup">
-            <SignUp
-              onRouteChange={this.onRouteChange}
-              loadToken={this.loadToken}
-            />
-          </Route>
-        );
-      case "user":
-        return (
-          <Route link="/user">
-            <UserHome user={this.state.user} />
-          </Route>
-        );
-      case "events":
-        return (
-          <Route link="/events">
-            <Events onRouteChange={this.onRouteChange} />
-          </Route>
-        );
-      case "clubs":
-        return (
-          <Route link="/clubs">
-            <Clubs onRouteChange={this.onRouteChange} />
-          </Route>
-        );
-      case "resources":
-        return (
-          <Route link="/resources">
-            <Resources onRouteChange={this.onRouteChange} />
-          </Route>
-        );
-      case "contact":
-        return (
-          <Route link="/contact">
-            <Contact />
-          </Route>
-        );
-      default:
-        return "404 page not found";
-    }
-  }
-
   render() {
     return (
+      <BrowserRouter>
       <div>
-        <Navbar
-          onRouteChange={this.onRouteChange}
-          loginStatus={JSON.parse(localStorage.getItem("login")).loginStatus}
+        <Navbar 
+          loginStatus={JSON.parse(localStorage.getItem('login')).loginStatus} 
           loggedIn={this.loggedIn}
-        />
-        {this.renderSwitch(this.state.route)}
-        <Footer route={this.state.route} />
+          />
+        <Switch>
+          <Route exact path="/" >
+            <Home />
+          </Route>
+          <Route  path="/login">
+            <Login  
+            loadToken={this.loadToken}
+            loggedIn={this.loggedIn}
+              />
+          </Route>
+          <Route path="/signup">
+            <SignUp  
+            loadToken={this.loadToken}/>
+          </Route>
+          <Route path={`/user`} >
+            <UserHome user={this.state.user} />
+          </Route>
+          <Route path="/resources">
+              <Resources />
+            </Route>
+          <Route path="/events">
+            <Events />
+          </Route>
+          <Route path="/clubs">
+            <Clubs />
+          </Route>
+          <Route path="/contact">
+            <Contact/>
+          </Route>
+        </Switch>
+        <Footer route={this.state.route}/>
       </div>
+    </BrowserRouter>
     );
   }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Title from "../Components/Title";
 import '../Styles/margin.css'
 import { FormGroup } from "@material-ui/core";
@@ -27,7 +27,8 @@ class Signup extends React.Component {
       password: "",
       phone: "",
       department: "",
-      token:''
+      err_fields:false,
+      err_user:false
     };
   }
 
@@ -76,10 +77,17 @@ class Signup extends React.Component {
       })
         .then((res) => res.json())
         .then((token) => {
-          if (token) {
+          console.log(token.msg)
+          if (token.msg==="Please enter all fields") {
+            this.setState({err_fields:true})
+          }
+          else if (token.msg==="User already exists") {
+            
+            this.setState({err_user:true})
+          }
+          else{
             this.props.loadToken(token);
-            this.props.onRouteChange("user");
-            // this.props.loggedIn(true);
+            this.props.history.push('/user');
           }
         });
     }
@@ -177,22 +185,33 @@ class Signup extends React.Component {
             />
             
             <Button variant="contained" onClick={this.handleData}
-            component={Link} 
-            to={`/user`}
             style={{width:180,alignSelf:'center'
-            ,backgroundColor:"#e84a5f",color:"#131313",marginBottom:35}}>
+            ,backgroundColor:"#e84a5f",color:"#131313",marginBottom:8}}>
               Signup
             </Button>
-            
+            {this.state.err_fields ? (
+              <Typography
+                align="center"
+                style={{ color: "#e84a5f", marginBottom: 10 }}
+              >
+                Please enter all fields.
+              </Typography>
+            ) : null}
+            {this.state.err_user ? (
+              <Typography
+                align="center"
+                style={{ color: "#e84a5f", marginBottom: 10 }}
+              >
+                User already exists.Try logging in.
+              </Typography>
+            ) : null}
+            <br/><br/>
             <Typography align='center'>Already have an account??</Typography>
             <Button  
             component={Link} 
             to="/login" 
             style={{width:150,alignSelf:'center',
-          backgroundColor:"#bfbfbf",color:"#000"}}
-            onClick={() => {
-              this.props.onRouteChange("login");
-            }}> 
+          backgroundColor:"#bfbfbf",color:"#000"}}> 
               Login Now
             </Button>
             </FormGroup>
@@ -207,4 +226,4 @@ class Signup extends React.Component {
     );
   }
 }
-export default Signup;
+export default (withRouter)(Signup);

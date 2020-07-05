@@ -14,7 +14,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
@@ -117,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
 
 //Making drawer responsive
 function Navbar(props) {
-  const { container, onRouteChange, loginStatus, loggedIn } = props;
+  const { container, loginStatus, loggedIn ,history} = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -148,9 +148,6 @@ function Navbar(props) {
           component={Link}
           to="/user"
           className={loginStatus ? classes.tabs_tabs : classes.hide}
-          onClick={() => {
-            onRouteChange("user");
-          }}
         >
           <ListItemIcon>
             <AccountCircleIcon className={classes.tabs_tabs} />
@@ -162,9 +159,6 @@ function Navbar(props) {
           component={Link}
           to="/events"
           className={classes.tabs_tabs}
-          onClick={() => {
-            onRouteChange("events");
-          }}
         >
           <ListItemIcon>
             <EventAvailableIcon className={classes.tabs_tabs} />
@@ -176,9 +170,6 @@ function Navbar(props) {
           component={Link}
           to="/clubs"
           className={classes.tabs_tabs}
-          onClick={() => {
-            onRouteChange("clubs");
-          }}
         >
           <ListItemIcon>
             <GroupAddIcon className={classes.tabs_tabs} />
@@ -190,9 +181,6 @@ function Navbar(props) {
           component={Link}
           to="/resources"
           className={loginStatus ? classes.tabs_tabs : classes.hide}
-          onClick={() => {
-            onRouteChange("resources");
-          }}
         >
           <ListItemIcon>
             <FileCopyIcon className={classes.tabs_tabs} />
@@ -204,9 +192,6 @@ function Navbar(props) {
           component={Link}
           to="/contact"
           className={classes.tabs_tabs}
-          onClick={() => {
-            onRouteChange("contact");
-          }}
         >
           <ListItemIcon>
             <AlternateEmailIcon className={classes.tabs_tabs} />
@@ -245,9 +230,6 @@ function Navbar(props) {
                 className={classes.logoHide}
                 component={Link}
                 to="/"
-                onClick={() => {
-                  onRouteChange("home");
-                }}
               />
             </Link>
             <Typography
@@ -257,9 +239,6 @@ function Navbar(props) {
               component={Link}
               to="/"
               style={{ fontWeight: "400",color:'white',textDecoration:'none',textAlign:'center' }}
-              onClick={() => {
-                onRouteChange("home");
-              }}
             >
               CLUSTER
             </Typography>
@@ -267,9 +246,6 @@ function Navbar(props) {
               <Button
                 variant="contained"
                 className={loginStatus ? classes.hide : classes.btn_1}
-                onClick={() => {
-                  onRouteChange("login");
-                }}
                 component={Link}
                 to="/login"
               >
@@ -280,23 +256,20 @@ function Navbar(props) {
                 className={loginStatus ? classes.hide : classes.btn_1}
                 component={Link}
                 to="/signup"
-                onClick={() => {
-                  onRouteChange("signup");
-                }}
               >
                 Sign up
               </Button>
               <Button
                 variant="contained"
                 className={loginStatus ? classes.btn_1 : classes.hide}
-                component={Link}
-                to="/home"
                 onClick={() => {
-                  onRouteChange("home");
+                  console.log("is this shit even working????")
                   localStorage.setItem('login',JSON.stringify({
                     loginStatus:false
                   }))
                   loggedIn();
+                  history.push('/');
+                  
                 }}
               >
                 Sign out
@@ -352,4 +325,4 @@ Navbar.propTypes = {
   ),
 };
 
-export default Navbar;
+export default (withRouter)(Navbar);

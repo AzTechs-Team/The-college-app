@@ -120,9 +120,6 @@ export default function Recent(props) {
           }}
           component={Link}
           to={`/${image.link}`}
-          onClick={() => {
-            props.onRouteChange(`${image.link}`);
-          }}
         >
           <span
             className={classes.imageSrc}

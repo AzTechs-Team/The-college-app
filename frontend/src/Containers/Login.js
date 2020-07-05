@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 import "../Styles/margin.css";
 import Title from "../Components/Title";
 import { FormGroup } from "@material-ui/core";
@@ -17,6 +17,7 @@ class Login extends React.Component {
       email: "",
       password: "",
       err: false,
+      status:false,
     };
   }
 
@@ -32,6 +33,7 @@ class Login extends React.Component {
       password: e.target.value,
     });
 
+
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
@@ -45,15 +47,13 @@ class Login extends React.Component {
     })
       .then((res) => res.json())
       .then((token) => {
-        if(token){
-          this.props.onRouteChange("user");
-          this.props.loadToken(token);
-        }
-        else{
-          console.log("ye chal raha hai kya????")
+        if(token.msg){
           this.setState({err:true})
         }
-        
+        else{
+          this.props.loadToken(token);
+          this.props.history.push('/user');
+        }        
       })
       .catch((err) => {
         console.log(err);
@@ -108,6 +108,7 @@ class Login extends React.Component {
                     required
                   />
 
+
                   <Button
                     variant="contained"
                     onClick={this.handleData}
@@ -119,7 +120,6 @@ class Login extends React.Component {
                       marginBottom: 20,
                     }}
                     component={Link}
-                    to={`/user`}
                   >
                     Login
                   </Button>
@@ -146,9 +146,6 @@ class Login extends React.Component {
                       backgroundColor: "#bfbfbf",
                       color: "#000",
                     }}
-                    onClick={() => {
-                      this.props.onRouteChange("signup");
-                    }}
                   >
                     Signup Now
                   </Button>
@@ -166,4 +163,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default (withRouter)(Login);

@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link'
+import {Link} from 'react-router-dom';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 const ClubCard=(props)=>{
     const matches = useMediaQuery('(min-width:600px)');
     const classes = useStyles();
-    const {name,img,desc,title,onRouteChange} = props
+    const {name,img,desc,title} = props
     return(
     <div>
     <Flippy
@@ -88,23 +88,20 @@ const ClubCard=(props)=>{
             <br/>
 
           <div style={{ display:'flex',justifyContent:'center',flexDirection:'row'}}>
-          <Link 
+          <a
         href="https://www.google.com/forms/about/" 
         target="_blank" 
-        rel="noopener"
+        rel="noopener noreferrer"
         style={{textDecoration:'none'}}
         >
           <Button size="small" variant="contained" 
           className={classes.btn_1}
         >
           Join Club!
-        </Button></Link>&ensp;
+        </Button></a>&ensp;
           <Button size="small" variant="contained" 
           className={classes.btn_1}
-        component={Link} to='/events'
-        onClick={()=>{
-          onRouteChange("events");
-        }} >
+        component={Link} to='/events'>
           Checkout events!
         </Button>
         </div>

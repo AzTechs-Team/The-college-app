@@ -8,7 +8,7 @@ import { Typography } from "@material-ui/core";
 import '../Styles/margin.css'
 
 //declare Component home, to be rendered inside conent of Navbar component
-function Home(props) {
+function Home() {
   return (
     <div id="home" style={{color:"white",backgroundColor:'#2d2d2d'}}>
       <div id="overlay">
@@ -26,7 +26,6 @@ function Home(props) {
               name="Developer Students Club"
               desc="Club description.Club description.Club description.
             Club description. Club description. Club desciption."
-            onRouteChange={props.onRouteChange}
             />
           </Grid>
           <Grid item>
@@ -35,7 +34,6 @@ function Home(props) {
               name="Mozilla Firefox Campus Club"
               desc="Club description.Club description.Club description.
             Club description. Club description. Club desciption."
-            onRouteChange={props.onRouteChange}
             />
           </Grid>
           <Grid item>
@@ -44,7 +42,6 @@ function Home(props) {
               name="Microsoft Student Partners"
               desc="Club description.Club description.Club description.
             Club description. Club description. Club desciption."
-            onRouteChange={props.onRouteChange}
             />
           </Grid>
         </Grid>
@@ -63,7 +60,6 @@ function Home(props) {
           porta ligula placerat. Vivamus molestie nisl diam, vel vestibulum arcu pharetra 
           sollicitudin."
           btn="Checkout Events now!"
-          onRouteChange={props.onRouteChange}
           location="events"
         />
         <br />
@@ -73,7 +69,7 @@ function Home(props) {
           Recently updated
         </Typography>
         <br />
-        <Recent onRouteChange={props.onRouteChange}/>
+        <Recent />
         <br/><br/>
         {/* display footer */}
       </div>

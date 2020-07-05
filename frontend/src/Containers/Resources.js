@@ -6,7 +6,7 @@ import { Typography } from '@material-ui/core';
 import '../Styles/margin.css'
 
 
-function Club(props) {
+function Club() {
   return (
     <div style={{backgroundColor:'#2d2d2d',color:'white'}}>        
       <Title name="Resources"/>
@@ -18,7 +18,6 @@ function Club(props) {
       sollicitudin. Suspendisse scelerisque ante et imperdiet tempor. Quisque vitae
        risus non diam auctor lobortis id eu mauris."
         btn="Check out Workshops!"
-        onRouteChange={props.onRouteChange}
         location="events"/>
         <br/><br/></div>
         <div id="resources">

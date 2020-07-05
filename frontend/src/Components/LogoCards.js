@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -72,9 +73,8 @@ const LogoCard=(props)=> {
       
         <Button size="small" variant="contained" 
         className={classes.btn_1}
-        onClick={() => {
-          props.onRouteChange("clubs");
-        }}>
+          component={Link}
+          to="/clubs">
           Join
         </Button>
         

@@ -6,8 +6,7 @@ import About from '../Components/About'
 import '../Styles/margin.css'
 
 //decalring Events to be rendered inside content of Navbar component
-function Events(props) {
-  const {onRouteChange} = props
+function Events() {
   return (
     <div style={{backgroundColor:"#2d2d2d"}}>   
       {/* display title*/}
@@ -23,7 +22,6 @@ function Events(props) {
           neque luctus ultricies. Mauris pretium posuere orci, id tincidunt ante 
           tincidunt in."
           btn="Checkout clubs!!"
-          onRouteChange={onRouteChange}
           location="clubs"
         /><br/><br/><br/>
       <Grid container  style={{display:'flex',justifyContent:'space-around'}}>

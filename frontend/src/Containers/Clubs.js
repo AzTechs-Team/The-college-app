@@ -4,7 +4,7 @@ import ClubCard from "../Components/ClubCards";
 import Title from "../Components/Title";
 import '../Styles/margin.css'
 
-function Club(props) {
+function Club() {
   return (
     <div style={{backgroundColor:"#2d2d2d"}}>
       <Title name="Clubs" />
@@ -22,7 +22,6 @@ function Club(props) {
           Club description. Club description. Club desciption.
           Club description."
             img="carousel-three.jpg"
-            onRouteChange={props.onRouteChange}
           />
         </Grid>
         <Grid item  md={5} xs={11}>
@@ -35,7 +34,6 @@ function Club(props) {
           Club description. Club description. Club desciption.
           Club description."
             img="carousel-two.jpg"
-            onRouteChange={props.onRouteChange}
           />
         </Grid>
         </Grid>
@@ -52,7 +50,6 @@ function Club(props) {
             Club description. Club description. Club desciption.
             Club description."
             img="carousel-one.jpg"
-            onRouteChange={props.onRouteChange}
           />
         </Grid>
         <Grid item  md={5} xs={11}>
@@ -65,7 +62,6 @@ function Club(props) {
             Club description. Club description. Club desciption.
             Club description."
             img="carousel-two.jpg"
-            onRouteChange={props.onRouteChange}
           />
         </Grid>
       </Grid>
