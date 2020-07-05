@@ -4,6 +4,9 @@ const router = express.Router();
 const User = require("../DB/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const config = require("config");
+
+const secretKey = config.get("secretkey");
 
 //@route POST api/signup
 //@desc Signip user
@@ -21,7 +24,6 @@ router.post("/signup", (req, res) => {
 
     if (users) {
       res.status(400).json({ msg: "User already exists" });
-      
     }
     let user = {};
     user.name = name;
@@ -34,20 +36,19 @@ router.post("/signup", (req, res) => {
     userModel.save().then((user) => {
       jwt.sign(
         {
-          name:user.name,
+          name: user.name,
           username: user.username,
           email: user.email,
           phone: user.phone,
           department: user.department,
         },
-        "Dummy text",
+        secretKey,
         { expiresIn: "1h" },
         function (err, token) {
           res.status(200).json({ token });
-          
         }
       );
-    })
+    });
   });
 });
 module.exports = router;
