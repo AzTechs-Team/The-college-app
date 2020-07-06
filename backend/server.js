@@ -28,6 +28,7 @@ app.get("*", (req, res) => {
 });
 
 //routes called
+const auth = require("./middleware/is-auth");
 const loginRoute = require("./routes/login.routes");
 const signupRoute = require("./routes/signup.routes");
 const userRoute = require("./routes/user.routes");
@@ -37,6 +38,7 @@ const userRoute = require("./routes/user.routes");
 app.post("/login", loginRoute);
 app.post("/signup", signupRoute);
 app.post("/user", userRoute);
+app.post("/auth", auth);
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
