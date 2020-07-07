@@ -1,13 +1,22 @@
-const cors = require("cors");
-const path = require("path");
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3001;
+const path = require("path");
+//const bcrypt= require('bcrypt-nodejs')
+const cors = require("cors");
 
 //mongoose connecting to mongoDB
 const connectDB = require("./DB/conection");
 const user = require("./DB/User");
 connectDB();
+
+//api user model
+// const userModel = require("./Api/User");
+// app.use(express.json({ extended: false }));
+const port = process.env.Port || 3001;
+
+// app.get("/", (req, res) => {
+//   res.send("<h1>Hello World!</h1>");
+// });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -19,6 +28,7 @@ app.get("*", (req, res) => {
 });
 
 //routes called
+const auth = require("./middleware/is-auth");
 const loginRoute = require("./routes/login.routes");
 const signupRoute = require("./routes/signup.routes");
 const userRoute = require("./routes/user.routes");
@@ -27,8 +37,9 @@ const userRoute = require("./routes/user.routes");
 
 app.post("/login", loginRoute);
 app.post("/signup", signupRoute);
-app.get("/user", userRoute);
+app.post("/user", userRoute);
+app.post("/auth", auth);
 
 app.listen(port, () => {
-  console.log("running!");
+  console.log(`Server is running on ${port}`);
 });
