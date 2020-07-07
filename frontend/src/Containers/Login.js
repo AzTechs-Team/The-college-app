@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Link,withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "../Styles/margin.css";
 import Title from "../Components/Title";
 import { FormGroup } from "@material-ui/core";
@@ -17,7 +17,7 @@ class Login extends React.Component {
       email: "",
       password: "",
       err: false,
-      status:false,
+      status: false,
     };
   }
 
@@ -33,11 +33,10 @@ class Login extends React.Component {
       password: e.target.value,
     });
 
-
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
-    fetch("http://localhost:3001/login", {
+    fetch("https://cluster-aztechs.herokuapp.com/login", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -47,13 +46,12 @@ class Login extends React.Component {
     })
       .then((res) => res.json())
       .then((token) => {
-        if(token.msg){
-          this.setState({err:true})
-        }
-        else{
+        if (token.msg) {
+          this.setState({ err: true });
+        } else {
           this.props.loadToken(token);
-          this.props.history.push('/user');
-        }        
+          this.props.history.push("/user");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -107,7 +105,6 @@ class Login extends React.Component {
                     }}
                     required
                   />
-
 
                   <Button
                     variant="contained"
@@ -163,4 +160,4 @@ class Login extends React.Component {
   }
 }
 
-export default (withRouter)(Login);
+export default withRouter(Login);

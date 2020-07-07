@@ -4,21 +4,20 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link, withRouter } from "react-router-dom";
 import Title from "../Components/Title";
-import '../Styles/margin.css'
+import "../Styles/margin.css";
 import { FormGroup } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import FormControl from '@material-ui/core/FormControl';
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import FormControl from "@material-ui/core/FormControl";
 
 //declaring signup class using React Component
 
-
 class Signup extends React.Component {
   //declaring state of class to help extract data from user input
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       name: "",
@@ -27,8 +26,8 @@ class Signup extends React.Component {
       password: "",
       phone: "",
       department: "",
-      err_fields:false,
-      err_user:false
+      err_fields: false,
+      err_user: false,
     };
   }
 
@@ -57,13 +56,13 @@ class Signup extends React.Component {
   handleDepartmentChange = (e) =>
     this.setState({
       department: e.target.value,
-    })
+    });
 
   //decalring function to handle data recieved from user input.
   //Data is converted to a JSON object
   handleData = () => {
-    if(this.state.email || this.state.password || this.state.name){
-      fetch("http://localhost:3001/signup", {
+    if (this.state.email || this.state.password || this.state.name) {
+      fetch("https://cluster-aztechs.herokuapp.com/signup", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -77,145 +76,202 @@ class Signup extends React.Component {
       })
         .then((res) => res.json())
         .then((token) => {
-          console.log(token.msg)
-          if (token.msg==="Please enter all fields") {
-            this.setState({err_fields:true})
-          }
-          else if (token.msg==="User already exists") {
-            
-            this.setState({err_user:true})
-          }
-          else{
+          console.log(token.msg);
+          if (token.msg === "Please enter all fields") {
+            this.setState({ err_fields: true });
+          } else if (token.msg === "User already exists") {
+            this.setState({ err_user: true });
+          } else {
             this.props.loadToken(token);
-            this.props.history.push('/user');
+            this.props.history.push("/user");
           }
         });
     }
-    
   };
 
   //Rendering components which will be returened on page
   render() {
     return (
-      <div style={{backgroundColor:"#2d2d2d",color:"white",}}>
+      <div style={{ backgroundColor: "#2d2d2d", color: "white" }}>
         <Title name="Signup" />
         <div id="signup">
           <Grid container style={{ display: "flex", justifyContent: "center" }}>
             <Grid item md={5} xs={10}>
-          <form noValidate autoComplete="off" >
-            <FormGroup >
-            <TextField
-              id="filled-name-input"
-              label="Full name"
-              type="text"
-              variant="filled"
-              value={this.state.name}
-              onChange={this.handleNameChange}
-              required
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15
-              }}}
-              
-            />
-            
-            <TextField
-              id="filled-username-input"
-              label="Username"
-              type="text"
-              variant="filled"
-              value={this.state.username}
-              onChange={this.handleUserChange}
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}/>
-              
-            <TextField
-              id="filled-phone-input"
-              label="Phone"
-              type="text"
-              variant="filled"
-              value={this.state.phone}
-              onChange={this.handlePhoneChange}
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}
-            />
-            <FormControl variant="filled" style={{backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}} >
-            <InputLabel id="demo-simple-select-filled-label" color="secondary">
-              Department</InputLabel>
-              <Select labelId="demo-simple-select-filled-label"  id="demo-simple-select-filled"
-               onChange={this.handleDepartmentChange} color="secondary"
-              >
-                
-                <ListSubheader>B.Tech</ListSubheader>
-                <MenuItem value={"B.Tech CSE"}>B.Tech CSE</MenuItem>
-                <MenuItem value={"B.Tech IT"}>B.Tech IT</MenuItem>
-                <MenuItem value={"B.Tech Mech"}>B.Tech Mech</MenuItem>
-                <MenuItem value={"B.Tech CE"}>B.Tech CE</MenuItem>
-                <MenuItem value={"B.Tech EE"}>B.Tech EE</MenuItem>
-                <ListSubheader>BBA</ListSubheader>
-                <MenuItem value={"BBA"}>BBA</MenuItem>
-                <MenuItem value={"BBA LLB"}>BBA LLB</MenuItem>
-                <ListSubheader>B.Sc</ListSubheader>
-                <MenuItem value={"B.Sc Phy"}>B.Sc Phyics</MenuItem>
-                <MenuItem value={"B.Sc Chem"}>B.Sc Chemistry</MenuItem>
-                <MenuItem value={"B.Sc Math"}>B.Sc Maths</MenuItem>
-            </Select></FormControl>
-            
-            <TextField
-              id="filled-email-input"
-              label="Email"
-              type="email"
-              variant="filled"
-              value={this.state.email}
-              onChange={this.handleEmailChange}
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}
-              required
-            />
-            
-            <TextField
-              id="filled-password-input"
-              label="Password"
-              type="password"
-              variant="filled"
-              value={this.state.password}
-              onChange={this.handlePwdChange}
-              color="secondary"
-              InputProps={{style:{ backgroundColor:'#bfbfbf',borderRadius:7,marginBottom:15}}}
-              required
-            />
-            
-            <Button variant="contained" onClick={this.handleData}
-            style={{width:180,alignSelf:'center'
-            ,backgroundColor:"#e84a5f",color:"#131313",marginBottom:8}}>
-              Signup
-            </Button>
-            {this.state.err_fields ? (
-              <Typography
-                align="center"
-                style={{ color: "#e84a5f", marginBottom: 10 }}
-              >
-                Please enter all fields.
-              </Typography>
-            ) : null}
-            {this.state.err_user ? (
-              <Typography
-                align="center"
-                style={{ color: "#e84a5f", marginBottom: 10 }}
-              >
-                User already exists.Try logging in.
-              </Typography>
-            ) : null}
-            <br/><br/>
-            <Typography align='center'>Already have an account??</Typography>
-            <Button  
-            component={Link} 
-            to="/login" 
-            style={{width:150,alignSelf:'center',
-          backgroundColor:"#bfbfbf",color:"#000"}}> 
-              Login Now
-            </Button>
-            </FormGroup>
-        </form></Grid></Grid>
+              <form noValidate autoComplete="off">
+                <FormGroup>
+                  <TextField
+                    id="filled-name-input"
+                    label="Full name"
+                    type="text"
+                    variant="filled"
+                    value={this.state.name}
+                    onChange={this.handleNameChange}
+                    required
+                    color="secondary"
+                    InputProps={{
+                      style: {
+                        backgroundColor: "#bfbfbf",
+                        borderRadius: 7,
+                        marginBottom: 15,
+                      },
+                    }}
+                  />
+
+                  <TextField
+                    id="filled-username-input"
+                    label="Username"
+                    type="text"
+                    variant="filled"
+                    value={this.state.username}
+                    onChange={this.handleUserChange}
+                    color="secondary"
+                    InputProps={{
+                      style: {
+                        backgroundColor: "#bfbfbf",
+                        borderRadius: 7,
+                        marginBottom: 15,
+                      },
+                    }}
+                  />
+
+                  <TextField
+                    id="filled-phone-input"
+                    label="Phone"
+                    type="text"
+                    variant="filled"
+                    value={this.state.phone}
+                    onChange={this.handlePhoneChange}
+                    color="secondary"
+                    InputProps={{
+                      style: {
+                        backgroundColor: "#bfbfbf",
+                        borderRadius: 7,
+                        marginBottom: 15,
+                      },
+                    }}
+                  />
+                  <FormControl
+                    variant="filled"
+                    style={{
+                      backgroundColor: "#bfbfbf",
+                      borderRadius: 7,
+                      marginBottom: 15,
+                    }}
+                  >
+                    <InputLabel
+                      id="demo-simple-select-filled-label"
+                      color="secondary"
+                    >
+                      Department
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-filled-label"
+                      id="demo-simple-select-filled"
+                      onChange={this.handleDepartmentChange}
+                      color="secondary"
+                    >
+                      <ListSubheader>B.Tech</ListSubheader>
+                      <MenuItem value={"B.Tech CSE"}>B.Tech CSE</MenuItem>
+                      <MenuItem value={"B.Tech IT"}>B.Tech IT</MenuItem>
+                      <MenuItem value={"B.Tech Mech"}>B.Tech Mech</MenuItem>
+                      <MenuItem value={"B.Tech CE"}>B.Tech CE</MenuItem>
+                      <MenuItem value={"B.Tech EE"}>B.Tech EE</MenuItem>
+                      <ListSubheader>BBA</ListSubheader>
+                      <MenuItem value={"BBA"}>BBA</MenuItem>
+                      <MenuItem value={"BBA LLB"}>BBA LLB</MenuItem>
+                      <ListSubheader>B.Sc</ListSubheader>
+                      <MenuItem value={"B.Sc Phy"}>B.Sc Phyics</MenuItem>
+                      <MenuItem value={"B.Sc Chem"}>B.Sc Chemistry</MenuItem>
+                      <MenuItem value={"B.Sc Math"}>B.Sc Maths</MenuItem>
+                    </Select>
+                  </FormControl>
+
+                  <TextField
+                    id="filled-email-input"
+                    label="Email"
+                    type="email"
+                    variant="filled"
+                    value={this.state.email}
+                    onChange={this.handleEmailChange}
+                    color="secondary"
+                    InputProps={{
+                      style: {
+                        backgroundColor: "#bfbfbf",
+                        borderRadius: 7,
+                        marginBottom: 15,
+                      },
+                    }}
+                    required
+                  />
+
+                  <TextField
+                    id="filled-password-input"
+                    label="Password"
+                    type="password"
+                    variant="filled"
+                    value={this.state.password}
+                    onChange={this.handlePwdChange}
+                    color="secondary"
+                    InputProps={{
+                      style: {
+                        backgroundColor: "#bfbfbf",
+                        borderRadius: 7,
+                        marginBottom: 15,
+                      },
+                    }}
+                    required
+                  />
+
+                  <Button
+                    variant="contained"
+                    onClick={this.handleData}
+                    style={{
+                      width: 180,
+                      alignSelf: "center",
+                      backgroundColor: "#e84a5f",
+                      color: "#131313",
+                      marginBottom: 8,
+                    }}
+                  >
+                    Signup
+                  </Button>
+                  {this.state.err_fields ? (
+                    <Typography
+                      align="center"
+                      style={{ color: "#e84a5f", marginBottom: 10 }}
+                    >
+                      Please enter all fields.
+                    </Typography>
+                  ) : null}
+                  {this.state.err_user ? (
+                    <Typography
+                      align="center"
+                      style={{ color: "#e84a5f", marginBottom: 10 }}
+                    >
+                      User already exists.Try logging in.
+                    </Typography>
+                  ) : null}
+                  <br />
+                  <br />
+                  <Typography align="center">
+                    Already have an account??
+                  </Typography>
+                  <Button
+                    component={Link}
+                    to="/login"
+                    style={{
+                      width: 150,
+                      alignSelf: "center",
+                      backgroundColor: "#bfbfbf",
+                      color: "#000",
+                    }}
+                  >
+                    Login Now
+                  </Button>
+                </FormGroup>
+              </form>
+            </Grid>
+          </Grid>
         </div>
         <br />
         <br />
@@ -226,4 +282,4 @@ class Signup extends React.Component {
     );
   }
 }
-export default (withRouter)(Signup);
+export default withRouter(Signup);

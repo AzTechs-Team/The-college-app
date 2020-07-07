@@ -30,15 +30,18 @@ class App extends Component {
     };
   }
 
-  UNSAFE_componentWillMount=()=>{
-    if(localStorage.length===0){
-    localStorage.setItem('login',JSON.stringify({
-      token:null,
-      loginStatus:false
-    }))
+  UNSAFE_componentWillMount = () => {
+    if (localStorage.length === 0) {
+      localStorage.setItem(
+        "login",
+        JSON.stringify({
+          token: null,
+          loginStatus: false,
+        })
+      );
     }
     this.loggedIn();
-  }
+  };
 
   componentDidUpdate = () => {
     this.loggedIn();
@@ -56,9 +59,9 @@ class App extends Component {
   };
 
   loadUser = () => {
-    fetch("http://localhost:3001/user", {
+    fetch("https://cluster-aztechs.herokuapp.com/user", {
       method: "post",
-      headers:{"Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         token: JSON.parse(localStorage.getItem("login")).token,
       }),
@@ -77,7 +80,7 @@ class App extends Component {
           },
         });
       })
-      .catch(err => console.log("fuck this shit. imma go cry now."))
+      .catch((err) => console.log("fuck this shit. imma go cry now."));
   };
 
   loggedIn = () => {
@@ -98,44 +101,40 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-      <div>
-        <Navbar 
-          loginStatus={JSON.parse(localStorage.getItem('login')).loginStatus} 
-          loggedIn={this.loggedIn}
-          />
-        <Switch>
-          <Route exact path="/" >
-            <Home />
-          </Route>
-          <Route  path="/login">
-            <Login  
-            loadToken={this.loadToken}
+        <div>
+          <Navbar
+            loginStatus={JSON.parse(localStorage.getItem("login")).loginStatus}
             loggedIn={this.loggedIn}
-              />
-          </Route>
-          <Route path="/signup">
-            <SignUp  
-            loadToken={this.loadToken}/>
-          </Route>
-          <Route path={`/user`} >
-            <UserHome user={this.state.user} />
-          </Route>
-          <Route path="/resources">
+          />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/login">
+              <Login loadToken={this.loadToken} loggedIn={this.loggedIn} />
+            </Route>
+            <Route path="/signup">
+              <SignUp loadToken={this.loadToken} />
+            </Route>
+            <Route path={`/user`}>
+              <UserHome user={this.state.user} />
+            </Route>
+            <Route path="/resources">
               <Resources />
             </Route>
-          <Route path="/events">
-            <Events />
-          </Route>
-          <Route path="/clubs">
-            <Clubs />
-          </Route>
-          <Route path="/contact">
-            <Contact/>
-          </Route>
-        </Switch>
-        <Footer route={this.state.route}/>
-      </div>
-    </BrowserRouter>
+            <Route path="/events">
+              <Events />
+            </Route>
+            <Route path="/clubs">
+              <Clubs />
+            </Route>
+            <Route path="/contact">
+              <Contact />
+            </Route>
+          </Switch>
+          <Footer route={this.state.route} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
