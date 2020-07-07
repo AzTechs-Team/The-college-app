@@ -17,12 +17,12 @@ import '../Styles/margin.css'
 
 const Styles=((theme) => ({
     root: {
-  
+      backgroundColor:'#181818',
       "& .MuiButton-root":{
           paddingTop:0,
       },
       "& .MuiTextField-root":{
-        color:'white'
+        color:'white',
       }
     },
     main: {
@@ -155,7 +155,7 @@ class Footer extends Component{
           <div>
             <MailchimpSubscribe url={url}
             render={({ subscribe,status}) => (
-              <div>
+              <div >
               <div className={classes.newsletter}>
                 <div>
                     <Typography variant="h6"> Be the first to get updates!</Typography>
