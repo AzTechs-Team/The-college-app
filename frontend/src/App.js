@@ -117,10 +117,19 @@ class App extends Component {
               <SignUp loadToken={this.loadToken} />
             </Route>
             <Route path={`/user`}>
-              <UserHome user={this.state.user} />
+              <UserHome
+                user={this.state.user}
+                loginStatus={
+                  JSON.parse(localStorage.getItem("login")).loginStatus
+                }
+              />
             </Route>
             <Route path="/resources">
-              <Resources />
+              <Resources
+                loginStatus={
+                  JSON.parse(localStorage.getItem("login")).loginStatus
+                }
+              />
             </Route>
             <Route path="/events">
               <Events />
